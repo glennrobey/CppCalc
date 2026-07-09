@@ -1,3 +1,4 @@
+#include "Parser.hpp"
 #include "Tokenizer.hpp"
 #include <iostream>
 
@@ -6,11 +7,13 @@ int main() {
 
   Tokenizer tokenizer;
 
-  auto tokens = tokenizer.tokenize("5");
+  auto tokens = tokenizer.tokenize("5+10");
 
-  for (const auto &token : tokens) {
-    std::cout << token.getValue() << "\n";
-  }
+  Parser parser(tokens);
+
+  double result = parser.parse();
+
+  std::cout << result << "\n";
 
   return 0;
 }
