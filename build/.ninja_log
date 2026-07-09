@@ -1,0 +1,14 @@
+# ninja log v7
+2	439	8053148706462820	CMakeFiles/CCalc.dir/src/main.cpp.obj	672219a0a136ce99
+10	99	8053124359067557	CMakeFiles/CCalc.dir/src/Calculator.cpp.obj	828be002b5e1f803
+2	247	8053149607209396	CMakeFiles/CCalc.dir/src/Token.cpp.obj	8520a4ca9a1c969d
+30	106	8053124359336258	CMakeFiles/CCalc.dir/src/History.cpp.obj	91ab915235ac1b1c
+10	113	8053148706462820	CMakeFiles/CCalc.dir/src/Parser.cpp.obj	d8fceed3861664b
+249	385	8053149609673972	CCalc.exe	a2e9676805ef313e
+1	159	8053161722625216	build.ninja	6f2c39050da04efa
+1	159	8053161722625216	C:/Users/Glenn/OneDrive/Desktop/C++Calc/build/cmake_install.cmake	6f2c39050da04efa
+17	283	8053161723591299	CMakeFiles/CCalc.dir/src/Tokenizer.cpp.obj	85582c117c3b87ad
+284	432	8053161726311538	CCalc.exe	9e2ea604c473bf3c
+7	304	8053175339661121	CMakeFiles/CCalc.dir/src/Tokenizer.cpp.obj	85582c117c3b87ad
+2	420	8053175339661121	CMakeFiles/CCalc.dir/src/main.cpp.obj	672219a0a136ce99
+421	539	8053175343807853	CCalc.exe	9e2ea604c473bf3c
