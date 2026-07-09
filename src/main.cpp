@@ -6,7 +6,7 @@ int main() {
 
   Tokenizer tokenizer;
 
-  auto tokens = tokenizer.tokenize("5+10+3");
+  auto tokens = tokenizer.tokenize("5");
 
   for (const auto &token : tokens) {
     std::cout << token.getValue() << "\n";
