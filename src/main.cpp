@@ -1,19 +1,26 @@
 #include "Parser.hpp"
 #include "Tokenizer.hpp"
 #include <iostream>
+#include <string>
 
 int main() {
   std::cout << "C++Calc starting...\n";
 
   Tokenizer tokenizer;
 
-  auto tokens = tokenizer.tokenize(" ( 5 + 10 ) * 2 ");
+  while (true) {
+    std::string input;
 
-  Parser parser(tokens);
+    std::cout << "> ";
+    std::getline(std::cin, input);
 
-  double result = parser.parse();
-
-  std::cout << result << "\n";
-
+    if (input == "exit") {
+      break;
+    }
+    auto tokens = tokenizer.tokenize(input);
+    Parser parser(tokens);
+    double result = parser.parse();
+    std::cout << result << "\n";
+  }
   return 0;
 }
