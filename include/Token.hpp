@@ -2,7 +2,15 @@
 
 #include <string>
 
-enum class TokenType { Number, Plus, Minus, Multiply, Divide };
+enum class TokenType {
+  Number,
+  Plus,
+  Minus,
+  Multiply,
+  Divide,
+  LeftParen,
+  RightParen
+};
 
 class Token {
 public:

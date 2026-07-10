@@ -11,7 +11,6 @@ std::vector<Token> Tokenizer::tokenize(const std::string &expression) {
     } else {
       if (!numberBuffer.empty()) {
         tokens.push_back(Token(TokenType::Number, numberBuffer));
-
         numberBuffer.clear();
       }
 
@@ -29,6 +28,14 @@ std::vector<Token> Tokenizer::tokenize(const std::string &expression) {
 
       if (character == '/') {
         tokens.push_back(Token(TokenType::Divide, "/"));
+      }
+
+      if (character == '(') {
+        tokens.push_back(Token(TokenType::LeftParen, "("));
+      }
+
+      if (character == ')') {
+        tokens.push_back(Token(TokenType::RightParen, ")"));
       }
     }
   }

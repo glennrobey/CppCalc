@@ -48,7 +48,21 @@ double Parser::parseTerm() {
 double Parser::parseFactor() {
   Token token = tokens[currentPosition];
 
-  currentPosition++;
+  if (token.getType() == TokenType::Number) {
+    currentPosition++;
 
-  return std::stod(token.getValue());
+    return std::stod(token.getValue());
+  }
+
+  if (token.getType() == TokenType::LeftParen) {
+    currentPosition++; // skip '('
+
+    double result = parseExpression();
+
+    currentPosition++; // skip ')'
+
+    return result;
+  }
+
+  return 0;
 }

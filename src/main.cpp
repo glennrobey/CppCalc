@@ -7,7 +7,7 @@ int main() {
 
   Tokenizer tokenizer;
 
-  auto tokens = tokenizer.tokenize("5+10*2");
+  auto tokens = tokenizer.tokenize("( 5 + 10) *2");
 
   Parser parser(tokens);
 
