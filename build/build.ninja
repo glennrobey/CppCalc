@@ -41,101 +41,101 @@ include CMakeFiles/rules.ninja
 
 cmake_ninja_workdir = C$:/Users/Glenn/OneDrive/Desktop/C++Calc/build/
 # =============================================================================
-# Object build statements for EXECUTABLE target CCalc
+# Object build statements for EXECUTABLE target C++Calc
 
 
 #############################################
-# Order-only phony target for CCalc
+# Order-only phony target for C++Calc
 
-build cmake_object_order_depends_target_CCalc: phony || .
+build cmake_object_order_depends_target_C++Calc: phony || .
 
-build CMakeFiles/CCalc.dir/src/main.cpp.obj: CXX_COMPILER__CCalc_unscanned_Debug C$:/Users/Glenn/OneDrive/Desktop/C++Calc/src/main.cpp || cmake_object_order_depends_target_CCalc
+build CMakeFiles/C++Calc.dir/src/main.cpp.obj: CXX_COMPILER__C.2b.2bCalc_unscanned_Debug C$:/Users/Glenn/OneDrive/Desktop/C++Calc/src/main.cpp || cmake_object_order_depends_target_C++Calc
   CONFIG = Debug
-  DEP_FILE = CMakeFiles\CCalc.dir\src\main.cpp.obj.d
+  DEP_FILE = CMakeFiles\C++Calc.dir\src\main.cpp.obj.d
   FLAGS = -O0 -g -Xclang -gcodeview -std=gnu++23 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
   INCLUDES = -IC:/Users/Glenn/OneDrive/Desktop/C++Calc/include
-  OBJECT_DIR = CMakeFiles\CCalc.dir
-  OBJECT_FILE_DIR = CMakeFiles\CCalc.dir\src
-  TARGET_COMPILE_PDB = CMakeFiles\CCalc.dir\
-  TARGET_PDB = CCalc.pdb
-  TARGET_SUPPORT_DIR = CMakeFiles\CCalc.dir
+  OBJECT_DIR = CMakeFiles\C++Calc.dir
+  OBJECT_FILE_DIR = CMakeFiles\C++Calc.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\C++Calc.dir\
+  TARGET_PDB = C++Calc.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\C++Calc.dir
 
-build CMakeFiles/CCalc.dir/src/Calculator.cpp.obj: CXX_COMPILER__CCalc_unscanned_Debug C$:/Users/Glenn/OneDrive/Desktop/C++Calc/src/Calculator.cpp || cmake_object_order_depends_target_CCalc
+build CMakeFiles/C++Calc.dir/src/Calculator.cpp.obj: CXX_COMPILER__C.2b.2bCalc_unscanned_Debug C$:/Users/Glenn/OneDrive/Desktop/C++Calc/src/Calculator.cpp || cmake_object_order_depends_target_C++Calc
   CONFIG = Debug
-  DEP_FILE = CMakeFiles\CCalc.dir\src\Calculator.cpp.obj.d
+  DEP_FILE = CMakeFiles\C++Calc.dir\src\Calculator.cpp.obj.d
   FLAGS = -O0 -g -Xclang -gcodeview -std=gnu++23 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
   INCLUDES = -IC:/Users/Glenn/OneDrive/Desktop/C++Calc/include
-  OBJECT_DIR = CMakeFiles\CCalc.dir
-  OBJECT_FILE_DIR = CMakeFiles\CCalc.dir\src
-  TARGET_COMPILE_PDB = CMakeFiles\CCalc.dir\
-  TARGET_PDB = CCalc.pdb
-  TARGET_SUPPORT_DIR = CMakeFiles\CCalc.dir
+  OBJECT_DIR = CMakeFiles\C++Calc.dir
+  OBJECT_FILE_DIR = CMakeFiles\C++Calc.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\C++Calc.dir\
+  TARGET_PDB = C++Calc.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\C++Calc.dir
 
-build CMakeFiles/CCalc.dir/src/Parser.cpp.obj: CXX_COMPILER__CCalc_unscanned_Debug C$:/Users/Glenn/OneDrive/Desktop/C++Calc/src/Parser.cpp || cmake_object_order_depends_target_CCalc
+build CMakeFiles/C++Calc.dir/src/Parser.cpp.obj: CXX_COMPILER__C.2b.2bCalc_unscanned_Debug C$:/Users/Glenn/OneDrive/Desktop/C++Calc/src/Parser.cpp || cmake_object_order_depends_target_C++Calc
   CONFIG = Debug
-  DEP_FILE = CMakeFiles\CCalc.dir\src\Parser.cpp.obj.d
+  DEP_FILE = CMakeFiles\C++Calc.dir\src\Parser.cpp.obj.d
   FLAGS = -O0 -g -Xclang -gcodeview -std=gnu++23 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
   INCLUDES = -IC:/Users/Glenn/OneDrive/Desktop/C++Calc/include
-  OBJECT_DIR = CMakeFiles\CCalc.dir
-  OBJECT_FILE_DIR = CMakeFiles\CCalc.dir\src
-  TARGET_COMPILE_PDB = CMakeFiles\CCalc.dir\
-  TARGET_PDB = CCalc.pdb
-  TARGET_SUPPORT_DIR = CMakeFiles\CCalc.dir
+  OBJECT_DIR = CMakeFiles\C++Calc.dir
+  OBJECT_FILE_DIR = CMakeFiles\C++Calc.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\C++Calc.dir\
+  TARGET_PDB = C++Calc.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\C++Calc.dir
 
-build CMakeFiles/CCalc.dir/src/Token.cpp.obj: CXX_COMPILER__CCalc_unscanned_Debug C$:/Users/Glenn/OneDrive/Desktop/C++Calc/src/Token.cpp || cmake_object_order_depends_target_CCalc
+build CMakeFiles/C++Calc.dir/src/Token.cpp.obj: CXX_COMPILER__C.2b.2bCalc_unscanned_Debug C$:/Users/Glenn/OneDrive/Desktop/C++Calc/src/Token.cpp || cmake_object_order_depends_target_C++Calc
   CONFIG = Debug
-  DEP_FILE = CMakeFiles\CCalc.dir\src\Token.cpp.obj.d
+  DEP_FILE = CMakeFiles\C++Calc.dir\src\Token.cpp.obj.d
   FLAGS = -O0 -g -Xclang -gcodeview -std=gnu++23 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
   INCLUDES = -IC:/Users/Glenn/OneDrive/Desktop/C++Calc/include
-  OBJECT_DIR = CMakeFiles\CCalc.dir
-  OBJECT_FILE_DIR = CMakeFiles\CCalc.dir\src
-  TARGET_COMPILE_PDB = CMakeFiles\CCalc.dir\
-  TARGET_PDB = CCalc.pdb
-  TARGET_SUPPORT_DIR = CMakeFiles\CCalc.dir
+  OBJECT_DIR = CMakeFiles\C++Calc.dir
+  OBJECT_FILE_DIR = CMakeFiles\C++Calc.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\C++Calc.dir\
+  TARGET_PDB = C++Calc.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\C++Calc.dir
 
-build CMakeFiles/CCalc.dir/src/Tokenizer.cpp.obj: CXX_COMPILER__CCalc_unscanned_Debug C$:/Users/Glenn/OneDrive/Desktop/C++Calc/src/Tokenizer.cpp || cmake_object_order_depends_target_CCalc
+build CMakeFiles/C++Calc.dir/src/Tokenizer.cpp.obj: CXX_COMPILER__C.2b.2bCalc_unscanned_Debug C$:/Users/Glenn/OneDrive/Desktop/C++Calc/src/Tokenizer.cpp || cmake_object_order_depends_target_C++Calc
   CONFIG = Debug
-  DEP_FILE = CMakeFiles\CCalc.dir\src\Tokenizer.cpp.obj.d
+  DEP_FILE = CMakeFiles\C++Calc.dir\src\Tokenizer.cpp.obj.d
   FLAGS = -O0 -g -Xclang -gcodeview -std=gnu++23 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
   INCLUDES = -IC:/Users/Glenn/OneDrive/Desktop/C++Calc/include
-  OBJECT_DIR = CMakeFiles\CCalc.dir
-  OBJECT_FILE_DIR = CMakeFiles\CCalc.dir\src
-  TARGET_COMPILE_PDB = CMakeFiles\CCalc.dir\
-  TARGET_PDB = CCalc.pdb
-  TARGET_SUPPORT_DIR = CMakeFiles\CCalc.dir
+  OBJECT_DIR = CMakeFiles\C++Calc.dir
+  OBJECT_FILE_DIR = CMakeFiles\C++Calc.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\C++Calc.dir\
+  TARGET_PDB = C++Calc.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\C++Calc.dir
 
-build CMakeFiles/CCalc.dir/src/History.cpp.obj: CXX_COMPILER__CCalc_unscanned_Debug C$:/Users/Glenn/OneDrive/Desktop/C++Calc/src/History.cpp || cmake_object_order_depends_target_CCalc
+build CMakeFiles/C++Calc.dir/src/History.cpp.obj: CXX_COMPILER__C.2b.2bCalc_unscanned_Debug C$:/Users/Glenn/OneDrive/Desktop/C++Calc/src/History.cpp || cmake_object_order_depends_target_C++Calc
   CONFIG = Debug
-  DEP_FILE = CMakeFiles\CCalc.dir\src\History.cpp.obj.d
+  DEP_FILE = CMakeFiles\C++Calc.dir\src\History.cpp.obj.d
   FLAGS = -O0 -g -Xclang -gcodeview -std=gnu++23 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
   INCLUDES = -IC:/Users/Glenn/OneDrive/Desktop/C++Calc/include
-  OBJECT_DIR = CMakeFiles\CCalc.dir
-  OBJECT_FILE_DIR = CMakeFiles\CCalc.dir\src
-  TARGET_COMPILE_PDB = CMakeFiles\CCalc.dir\
-  TARGET_PDB = CCalc.pdb
-  TARGET_SUPPORT_DIR = CMakeFiles\CCalc.dir
+  OBJECT_DIR = CMakeFiles\C++Calc.dir
+  OBJECT_FILE_DIR = CMakeFiles\C++Calc.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\C++Calc.dir\
+  TARGET_PDB = C++Calc.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\C++Calc.dir
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target CCalc
+# Link build statements for EXECUTABLE target C++Calc
 
 
 #############################################
-# Link the executable CCalc.exe
+# Link the executable C++Calc.exe
 
-build CCalc.exe: CXX_EXECUTABLE_LINKER__CCalc_Debug CMakeFiles/CCalc.dir/src/main.cpp.obj CMakeFiles/CCalc.dir/src/Calculator.cpp.obj CMakeFiles/CCalc.dir/src/Parser.cpp.obj CMakeFiles/CCalc.dir/src/Token.cpp.obj CMakeFiles/CCalc.dir/src/Tokenizer.cpp.obj CMakeFiles/CCalc.dir/src/History.cpp.obj
+build C++Calc.exe: CXX_EXECUTABLE_LINKER__C.2b.2bCalc_Debug CMakeFiles/C++Calc.dir/src/main.cpp.obj CMakeFiles/C++Calc.dir/src/Calculator.cpp.obj CMakeFiles/C++Calc.dir/src/Parser.cpp.obj CMakeFiles/C++Calc.dir/src/Token.cpp.obj CMakeFiles/C++Calc.dir/src/Tokenizer.cpp.obj CMakeFiles/C++Calc.dir/src/History.cpp.obj
   CONFIG = Debug
   FLAGS = -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
   LINK_FLAGS = -Xlinker /subsystem:console -fuse-ld=lld
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames
-  OBJECT_DIR = CMakeFiles\CCalc.dir
+  OBJECT_DIR = CMakeFiles\C++Calc.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = CMakeFiles\CCalc.dir\
-  TARGET_FILE = CCalc.exe
-  TARGET_IMPLIB = CCalc.lib
-  TARGET_PDB = CCalc.pdb
-  TARGET_SUPPORT_DIR = CMakeFiles\CCalc.dir
+  TARGET_COMPILE_PDB = CMakeFiles\C++Calc.dir\
+  TARGET_FILE = C++Calc.exe
+  TARGET_IMPLIB = C++Calc.lib
+  TARGET_PDB = C++Calc.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\C++Calc.dir
 
 
 #############################################
@@ -164,7 +164,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
-build CCalc: phony CCalc.exe
+build C++Calc: phony C++Calc.exe
 
 # =============================================================================
 # Folder targets.
@@ -174,7 +174,7 @@ build CCalc: phony CCalc.exe
 #############################################
 # Folder: C:/Users/Glenn/OneDrive/Desktop/C++Calc/build
 
-build all: phony CCalc.exe
+build all: phony C++Calc.exe
 
 # =============================================================================
 # Built-in targets

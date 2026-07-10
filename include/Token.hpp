@@ -9,7 +9,9 @@ enum class TokenType {
   Multiply,
   Divide,
   LeftParen,
-  RightParen
+  RightParen,
+  Identifier,
+  Assignment
 };
 
 class Token {

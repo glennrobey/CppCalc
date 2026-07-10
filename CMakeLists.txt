@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 include_directories(include)
 
 add_executable(
-    CCalc
+    C++Calc
     src/main.cpp
     src/Calculator.cpp
     src/Parser.cpp

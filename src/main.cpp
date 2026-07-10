@@ -3,11 +3,13 @@
 #include <cctype>
 #include <iostream>
 #include <string>
+#include <unordered_map>
 
 int main() {
   std::cout << "C++Calc starting...\n";
 
   Tokenizer tokenizer;
+  std::unordered_map<std::string, double> variables;
 
   while (true) {
     std::string input;
