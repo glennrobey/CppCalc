@@ -1,8 +1,11 @@
 #include "Parser.hpp"
 #include <stdexcept>
 #include <string>
+#include <unordered_map>
 
-Parser::Parser(std::vector<Token> tokens) { this->tokens = tokens; }
+Parser::Parser(std::vector<Token> tokens,
+               std::unordered_map<std::string, double> &variables)
+    : tokens(tokens), variables(variables) {}
 
 double Parser::parse() {
   double result = parseExpression();
@@ -78,6 +81,15 @@ double Parser::parseFactor() {
     return std::stod(token.getValue());
   }
 
+  if (token.getType() == TokenType::Identifier) {
+    currentPosition++;
+
+    if (variables.find(token.getValue()) == variables.end()) {
+      throw std::runtime_error("Unknown variable: " + token.getValue());
+    }
+
+    return variables[token.getValue()];
+  }
   if (token.getType() == TokenType::LeftParen) {
     currentPosition++;
 

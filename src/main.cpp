@@ -41,7 +41,13 @@ int main() {
     try {
       auto tokens = tokenizer.tokenize(input);
 
-      Parser parser(tokens);
+      // Debug: print tokens
+      for (const auto &token : tokens) {
+        std::cout << "Type: " << static_cast<int>(token.getType())
+                  << " Value: " << token.getValue() << "\n";
+      }
+
+      Parser parser(tokens, variables);
 
       double result = parser.parse();
 
