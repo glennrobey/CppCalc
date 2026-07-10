@@ -42,6 +42,9 @@ double Parser::parseTerm() {
         throw std::runtime_error("Division by zero");
       }
       result /= divisor;
+    } else if (token.getType() == TokenType::Number ||
+               token.getType() == TokenType::LeftParen) {
+      result *= parseFactor();
     } else {
       break;
     }
