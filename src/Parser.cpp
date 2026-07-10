@@ -25,7 +25,25 @@ double Parser::parseExpression() {
   return result;
 }
 
-double Parser::parseTerm() { return parseFactor(); }
+double Parser::parseTerm() {
+  double result = parseFactor();
+
+  while (currentPosition < tokens.size()) {
+    Token token = tokens[currentPosition];
+
+    if (token.getType() == TokenType::Multiply) {
+      currentPosition++;
+      result *= parseFactor();
+    } else if (token.getType() == TokenType::Divide) {
+      currentPosition++;
+      result /= parseFactor();
+    } else {
+      break;
+    }
+  }
+
+  return result;
+}
 
 double Parser::parseFactor() {
   Token token = tokens[currentPosition];
