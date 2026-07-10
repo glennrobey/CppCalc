@@ -1,4 +1,5 @@
 #include "Parser.hpp"
+#include <stdexcept>
 #include <string>
 
 Parser::Parser(std::vector<Token> tokens) { this->tokens = tokens; }
@@ -36,7 +37,11 @@ double Parser::parseTerm() {
       result *= parseFactor();
     } else if (token.getType() == TokenType::Divide) {
       currentPosition++;
-      result /= parseFactor();
+      double divisor = parseFactor();
+      if (divisor == 0) {
+        throw std::runtime_error("Division by zero");
+      }
+      result /= divisor;
     } else {
       break;
     }
@@ -46,6 +51,9 @@ double Parser::parseTerm() {
 }
 
 double Parser::parseFactor() {
+  if (currentPosition >= tokens.size()) {
+    throw std::runtime_error("Unexpected end of expression");
+  }
   Token token = tokens[currentPosition];
 
   if (token.getType() == TokenType::Minus) {
@@ -63,11 +71,15 @@ double Parser::parseFactor() {
     currentPosition++;
 
     double result = parseExpression();
+    if (currentPosition >= tokens.size() ||
+        tokens[currentPosition].getType() != TokenType::RightParen) {
+      throw std::runtime_error("Missing closing parenthesis");
+    }
 
     currentPosition++;
 
     return result;
   }
 
-  return 0;
+  throw std::runtime_error("Expected a number");
 }

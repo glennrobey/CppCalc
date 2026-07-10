@@ -17,10 +17,19 @@ int main() {
     if (input == "exit") {
       break;
     }
-    auto tokens = tokenizer.tokenize(input);
-    Parser parser(tokens);
-    double result = parser.parse();
-    std::cout << result << "\n";
+
+    try {
+      auto tokens = tokenizer.tokenize(input);
+
+      Parser parser(tokens);
+
+      double result = parser.parse();
+
+      std::cout << result << "\n";
+    } catch (const std::exception &error) {
+      std::cout << "Error: " << error.what() << "\n";
+    }
   }
+
   return 0;
 }
