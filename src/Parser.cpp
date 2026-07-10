@@ -4,7 +4,15 @@
 
 Parser::Parser(std::vector<Token> tokens) { this->tokens = tokens; }
 
-double Parser::parse() { return parseExpression(); }
+double Parser::parse() {
+  double result = parseExpression();
+
+  if (currentPosition < tokens.size()) {
+    throw std::runtime_error("Unexpected input after calculation");
+  }
+
+  return result;
+}
 
 double Parser::parseExpression() {
   double result = parseTerm();

@@ -1,5 +1,6 @@
 #include "Parser.hpp"
 #include "Tokenizer.hpp"
+#include <cctype>
 #include <iostream>
 #include <string>
 
@@ -12,10 +13,27 @@ int main() {
     std::string input;
 
     std::cout << "> ";
-    std::getline(std::cin, input);
+
+    if (!std::getline(std::cin, input)) {
+      break;
+    }
 
     if (input == "exit") {
       break;
+    }
+
+    bool onlyWhitespace = true;
+
+    for (char character : input) {
+      if (!std::isspace(character)) {
+        onlyWhitespace = false;
+        break;
+      }
+    }
+
+    if (onlyWhitespace) {
+      std::cout << "Error: Please enter an expression\n";
+      continue;
     }
 
     try {
