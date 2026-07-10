@@ -6,7 +6,7 @@ std::vector<Token> Tokenizer::tokenize(const std::string &expression) {
   std::string numberBuffer;
 
   for (char character : expression) {
-    if (isdigit(character)) {
+    if (isdigit(character) || character == '.') {
       numberBuffer += character;
     } else {
       if (!numberBuffer.empty()) {

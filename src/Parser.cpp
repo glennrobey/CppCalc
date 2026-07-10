@@ -48,6 +48,11 @@ double Parser::parseTerm() {
 double Parser::parseFactor() {
   Token token = tokens[currentPosition];
 
+  if (token.getType() == TokenType::Minus) {
+    currentPosition++;
+    return -parseFactor();
+  }
+
   if (token.getType() == TokenType::Number) {
     currentPosition++;
 
@@ -55,11 +60,11 @@ double Parser::parseFactor() {
   }
 
   if (token.getType() == TokenType::LeftParen) {
-    currentPosition++; // skip '('
+    currentPosition++;
 
     double result = parseExpression();
 
-    currentPosition++; // skip ')'
+    currentPosition++;
 
     return result;
   }
