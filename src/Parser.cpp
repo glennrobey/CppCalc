@@ -80,6 +80,7 @@ double Parser::parseTerm() {
       }
       result /= divisor;
     } else if (token.getType() == TokenType::Number ||
+               token.getType() == TokenType::Identifier ||
                token.getType() == TokenType::LeftParen) {
       result *= parsePower();
     } else {
