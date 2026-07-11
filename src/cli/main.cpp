@@ -1,5 +1,5 @@
-#include "Parser.hpp"
-#include "Tokenizer.hpp"
+#include "core/Parser.hpp"
+#include "core/Tokenizer.hpp"
 #include <cctype>
 #include <iostream>
 #include <string>

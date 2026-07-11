@@ -1,19 +1,20 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(CCalc)
+project(CppCalc)
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-include_directories(include)
 
 add_executable(
     C++Calc
-    src/main.cpp
-    src/Calculator.cpp
-    src/Parser.cpp
-    src/Token.cpp
-    src/Tokenizer.cpp
-    src/History.cpp
+    src/cli/main.cpp
+    src/core/Calculator.cpp
+    src/core/Parser.cpp
+    src/core/Token.cpp
+    src/core/Tokenizer.cpp
+    src/core/History.cpp
 
 )
+
+target_include_directories(C++Calc PRIVATE include)

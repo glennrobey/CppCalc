@@ -1,7 +1,7 @@
 
 #pragma once
 
-#include "Token.hpp"
+#include "core/Token.hpp"
 #include <cstddef>
 #include <functional>
 #include <string>
