@@ -6,6 +6,12 @@
 #include <unordered_map>
 #include <vector>
 
+void initializeVariables(std::unordered_map<std::string, double> &variables) {
+  variables["ans"] = 0;
+  variables["pi"] = 3.141592653589793;
+  variables["e"] = 2.718281828459045;
+}
+
 int main() {
   std::cout << "C++Calc starting...\n";
 
@@ -13,10 +19,7 @@ int main() {
   std::unordered_map<std::string, double> variables;
   std::vector<std::string> history;
 
-  variables["ans"] = 0;
-  variables["pi"] = 3.141592653589793;
-  variables["e"] = 2.718281828459045;
-
+  initializeVariables(variables);
   while (true) {
     std::string input;
 
@@ -34,6 +37,43 @@ int main() {
       for (const auto &entry : history) {
         std::cout << entry << "\n";
       }
+      continue;
+    }
+
+    if (input == "vars") {
+      for (const auto &entry : variables) {
+        std::cout << entry.first << "=" << entry.second << "\n";
+      }
+      continue;
+    }
+
+    if (input == "clear") {
+      variables.clear();
+
+      initializeVariables(variables);
+
+      std::cout << "Variables cleared\n";
+      continue;
+    }
+
+    if (input == "reset") {
+      variables.clear();
+      history.clear();
+
+      initializeVariables(variables);
+
+      std::cout << "Calculator reset\n";
+      continue;
+    }
+
+    if (input == "help") {
+      std::cout << "Commands:\n";
+      std::cout << "  help      Show this message\n";
+      std::cout << "  vars      Show variables\n";
+      std::cout << "  history   Show calculations\n";
+      std::cout << "  clear     Clear variables\n";
+      std::cout << "  reset     Factory reset calculator\n";
+      std::cout << "  exit      Quit calculator\n";
       continue;
     }
 
