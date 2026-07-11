@@ -3,6 +3,8 @@
 
 #include "Token.hpp"
 #include <cstddef>
+#include <functional>
+#include <string>
 #include <unordered_map>
 #include <vector>
 
@@ -15,6 +17,7 @@ public:
 private:
   std::vector<Token> tokens;
   std::unordered_map<std::string, double> &variables;
+  std::unordered_map<std::string, std::function<double(double)>> functions;
   size_t currentPosition = 0;
 
   double parseAssignment();

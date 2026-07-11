@@ -3,10 +3,16 @@
 #include <stdexcept>
 #include <string>
 #include <unordered_map>
+#include <vector>
 
 Parser::Parser(std::vector<Token> tokens,
                std::unordered_map<std::string, double> &variables)
-    : tokens(tokens), variables(variables) {}
+    : tokens(tokens), variables(variables) {
+  functions["sqrt"] = [](double x) { return std::sqrt(x); };
+  functions["sin"] = [](double x) { return std::sin(x); };
+  functions["cos"] = [](double x) { return std::cos(x); };
+  functions["log"] = [](double x) { return std::log(x); };
+}
 
 double Parser::parse() {
   double result = parseAssignment();
@@ -101,32 +107,64 @@ double Parser::parseFactor() {
   if (currentPosition >= tokens.size()) {
     throw std::runtime_error("Unexpected end of expression");
   }
+
   Token token = tokens[currentPosition];
 
+  // Negative numbers
   if (token.getType() == TokenType::Minus) {
     currentPosition++;
-    return -parsePower();
+    return -parseFactor();
   }
 
+  // Numbers
   if (token.getType() == TokenType::Number) {
     currentPosition++;
 
     return std::stod(token.getValue());
   }
 
+  // Variables OR Functions
   if (token.getType() == TokenType::Identifier) {
     currentPosition++;
 
-    if (variables.find(token.getValue()) == variables.end()) {
-      throw std::runtime_error("Unknown variable: " + token.getValue());
+    std::string name = token.getValue();
+
+    // Function call: sqrt(25)
+    if (currentPosition < tokens.size() &&
+        tokens[currentPosition].getType() == TokenType::LeftParen) {
+
+      currentPosition++;
+
+      double argument = parseExpression();
+
+      if (currentPosition >= tokens.size() ||
+          tokens[currentPosition].getType() != TokenType::RightParen) {
+        throw std::runtime_error("Missing ')' after function");
+      }
+
+      currentPosition++;
+
+      if (functions.find(name) == functions.end()) {
+        throw std::runtime_error("Unknown function: " + name);
+      }
+
+      return functions[name](argument);
     }
 
-    return variables[token.getValue()];
+    // Variable lookup: x
+    if (variables.find(name) == variables.end()) {
+      throw std::runtime_error("Unknown variable: " + name);
+    }
+
+    return variables[name];
   }
+
+  // Parentheses
   if (token.getType() == TokenType::LeftParen) {
     currentPosition++;
 
     double result = parseExpression();
+
     if (currentPosition >= tokens.size() ||
         tokens[currentPosition].getType() != TokenType::RightParen) {
       throw std::runtime_error("Missing closing parenthesis");
