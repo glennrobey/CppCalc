@@ -12,6 +12,8 @@ int main() {
   std::unordered_map<std::string, double> variables;
 
   variables["ans"] = 0;
+  variables["pi"] = 3.141592653589793;
+  variables["e"] = 2.718281828459045;
 
   while (true) {
     std::string input;
