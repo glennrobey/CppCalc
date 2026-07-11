@@ -11,6 +11,8 @@ int main() {
   Tokenizer tokenizer;
   std::unordered_map<std::string, double> variables;
 
+  variables["ans"] = 0;
+
   while (true) {
     std::string input;
 
@@ -41,17 +43,14 @@ int main() {
     try {
       auto tokens = tokenizer.tokenize(input);
 
-      // Debug: print tokens
-      for (const auto &token : tokens) {
-        std::cout << "Type: " << static_cast<int>(token.getType())
-                  << " Value: " << token.getValue() << "\n";
-      }
-
       Parser parser(tokens, variables);
 
       double result = parser.parse();
 
+      variables["ans"] = result;
+
       std::cout << result << "\n";
+
     } catch (const std::exception &error) {
       std::cout << "Error: " << error.what() << "\n";
     }

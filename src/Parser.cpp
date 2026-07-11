@@ -1,4 +1,5 @@
 #include "Parser.hpp"
+#include <cmath>
 #include <stdexcept>
 #include <string>
 #include <unordered_map>
@@ -8,13 +9,32 @@ Parser::Parser(std::vector<Token> tokens,
     : tokens(tokens), variables(variables) {}
 
 double Parser::parse() {
-  double result = parseExpression();
+  double result = parseAssignment();
 
   if (currentPosition < tokens.size()) {
     throw std::runtime_error("Unexpected input after calculation");
   }
 
   return result;
+}
+
+double Parser::parseAssignment() {
+  if (currentPosition + 1 < tokens.size() &&
+      tokens[currentPosition].getType() == TokenType::Identifier &&
+      tokens[currentPosition + 1].getType() == TokenType::Assignment) {
+
+    std::string variableName = tokens[currentPosition].getValue();
+
+    currentPosition += 2;
+
+    double value = parseExpression();
+
+    variables[variableName] = value;
+
+    return value;
+  }
+
+  return parseExpression();
 }
 
 double Parser::parseExpression() {
@@ -38,27 +58,40 @@ double Parser::parseExpression() {
 }
 
 double Parser::parseTerm() {
-  double result = parseFactor();
+  double result = parsePower();
 
   while (currentPosition < tokens.size()) {
     Token token = tokens[currentPosition];
 
     if (token.getType() == TokenType::Multiply) {
       currentPosition++;
-      result *= parseFactor();
+      result *= parsePower();
     } else if (token.getType() == TokenType::Divide) {
       currentPosition++;
-      double divisor = parseFactor();
+      double divisor = parsePower();
       if (divisor == 0) {
         throw std::runtime_error("Division by zero");
       }
       result /= divisor;
     } else if (token.getType() == TokenType::Number ||
                token.getType() == TokenType::LeftParen) {
-      result *= parseFactor();
+      result *= parsePower();
     } else {
       break;
     }
+  }
+
+  return result;
+}
+
+double Parser::parsePower() {
+  double result = parseFactor();
+
+  if (currentPosition < tokens.size() &&
+      tokens[currentPosition].getType() == TokenType::Power) {
+    currentPosition++;
+
+    result = std::pow(result, parsePower());
   }
 
   return result;
@@ -72,7 +105,7 @@ double Parser::parseFactor() {
 
   if (token.getType() == TokenType::Minus) {
     currentPosition++;
-    return -parseFactor();
+    return -parsePower();
   }
 
   if (token.getType() == TokenType::Number) {

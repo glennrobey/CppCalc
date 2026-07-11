@@ -17,7 +17,9 @@ private:
   std::unordered_map<std::string, double> &variables;
   size_t currentPosition = 0;
 
+  double parseAssignment();
   double parseExpression();
   double parseTerm();
+  double parsePower();
   double parseFactor();
 };

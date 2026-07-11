@@ -8,6 +8,7 @@ enum class TokenType {
   Minus,
   Multiply,
   Divide,
+  Power,
   LeftParen,
   RightParen,
   Identifier,

@@ -62,6 +62,9 @@ std::vector<Token> Tokenizer::tokenize(const std::string &expression) {
       if (character == ')') {
         tokens.push_back(Token(TokenType::RightParen, ")"));
       }
+      if (character == '^') {
+        tokens.push_back(Token(TokenType::Power, "^"));
+      }
 
       // Assignment operator
       if (character == '=') {
