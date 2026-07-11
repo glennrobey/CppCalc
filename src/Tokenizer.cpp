@@ -59,6 +59,10 @@ std::vector<Token> Tokenizer::tokenize(const std::string &expression) {
         tokens.push_back(Token(TokenType::LeftParen, "("));
       }
 
+      if (character == ',') {
+        tokens.push_back(Token(TokenType::Comma, ","));
+      }
+
       if (character == ')') {
         tokens.push_back(Token(TokenType::RightParen, ")"));
       }

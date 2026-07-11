@@ -4,12 +4,14 @@
 #include <iostream>
 #include <string>
 #include <unordered_map>
+#include <vector>
 
 int main() {
   std::cout << "C++Calc starting...\n";
 
   Tokenizer tokenizer;
   std::unordered_map<std::string, double> variables;
+  std::vector<std::string> history;
 
   variables["ans"] = 0;
   variables["pi"] = 3.141592653589793;
@@ -26,6 +28,13 @@ int main() {
 
     if (input == "exit") {
       break;
+    }
+
+    if (input == "history") {
+      for (const auto &entry : history) {
+        std::cout << entry << "\n";
+      }
+      continue;
     }
 
     bool onlyWhitespace = true;
@@ -50,6 +59,8 @@ int main() {
       double result = parser.parse();
 
       variables["ans"] = result;
+
+      history.push_back(input + " = " + std::to_string(result));
 
       std::cout << result << "\n";
 

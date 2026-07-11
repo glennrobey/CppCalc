@@ -17,7 +17,8 @@ public:
 private:
   std::vector<Token> tokens;
   std::unordered_map<std::string, double> &variables;
-  std::unordered_map<std::string, std::function<double(double)>> functions;
+  std::unordered_map<std::string, std::function<double(std::vector<double>)>>
+      functions;
   size_t currentPosition = 0;
 
   double parseAssignment();

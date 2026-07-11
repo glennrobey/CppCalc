@@ -12,7 +12,8 @@ enum class TokenType {
   LeftParen,
   RightParen,
   Identifier,
-  Assignment
+  Assignment,
+  Comma
 };
 
 class Token {
