@@ -1,5 +1,6 @@
 #pragma once
 
+#include "core/Functions.hpp"
 #include "core/History.hpp"
 #include "core/Tokenizer.hpp"
 #include "core/Variables.hpp"
@@ -24,4 +25,6 @@ private:
   Variables variables;
 
   History history;
+
+  Functions functions;
 };

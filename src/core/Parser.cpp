@@ -5,52 +5,12 @@
 #include <string>
 #include <vector>
 
-Parser::Parser(std::vector<Token> tokens, Variables &variables)
-    : tokens(tokens), variables(variables) {
-
-  functions["sqrt"] = [](std::vector<double> args) {
-    if (args.size() != 1)
-      throw std::runtime_error("sqrt expects 1 argument");
-
-    if (args[0] < 0)
-      throw std::runtime_error("sqrt domain error");
-
-    return std::sqrt(args[0]);
-  };
-
-  functions["sin"] = [](std::vector<double> args) {
-    if (args.size() != 1)
-      throw std::runtime_error("sin expects 1 argument");
-
-    return std::sin(args[0]);
-  };
-
-  functions["cos"] = [](std::vector<double> args) {
-    if (args.size() != 1)
-      throw std::runtime_error("cos expects 1 argument");
-
-    return std::cos(args[0]);
-  };
-
-  functions["log"] = [](std::vector<double> args) {
-    if (args.size() != 1)
-      throw std::runtime_error("log expects 1 argument");
-
-    if (args[0] <= 0)
-      throw std::runtime_error("log domain error");
-
-    return std::log(args[0]);
-  };
-
-  functions["pow"] = [](std::vector<double> args) {
-    if (args.size() != 2)
-      throw std::runtime_error("pow expects 2 arguments");
-
-    return std::pow(args[0], args[1]);
-  };
-}
+Parser::Parser(std::vector<Token> tokens, Variables &variables,
+               Functions &functions)
+    : tokens(tokens), variables(variables), functions(functions) {}
 
 double Parser::parse() {
+
   double result = parseAssignment();
 
   if (currentPosition < tokens.size()) {
@@ -61,6 +21,7 @@ double Parser::parse() {
 }
 
 double Parser::parseAssignment() {
+
   if (currentPosition + 1 < tokens.size() &&
       tokens[currentPosition].getType() == TokenType::Identifier &&
       tokens[currentPosition + 1].getType() == TokenType::Assignment) {
@@ -84,18 +45,25 @@ double Parser::parseAssignment() {
 }
 
 double Parser::parseExpression() {
+
   double result = parseTerm();
 
   while (currentPosition < tokens.size()) {
+
     Token token = tokens[currentPosition];
 
     if (token.getType() == TokenType::Plus) {
+
       currentPosition++;
       result += parseTerm();
+
     } else if (token.getType() == TokenType::Minus) {
+
       currentPosition++;
       result -= parseTerm();
+
     } else {
+
       break;
     }
   }
@@ -104,15 +72,20 @@ double Parser::parseExpression() {
 }
 
 double Parser::parseTerm() {
+
   double result = parsePower();
 
   while (currentPosition < tokens.size()) {
+
     Token token = tokens[currentPosition];
 
     if (token.getType() == TokenType::Multiply) {
+
       currentPosition++;
       result *= parsePower();
+
     } else if (token.getType() == TokenType::Divide) {
+
       currentPosition++;
 
       double divisor = parsePower();
@@ -127,9 +100,11 @@ double Parser::parseTerm() {
                token.getType() == TokenType::Identifier ||
                token.getType() == TokenType::LeftParen) {
 
+      // implicit multiplication
       result *= parsePower();
 
     } else {
+
       break;
     }
   }
@@ -138,6 +113,7 @@ double Parser::parseTerm() {
 }
 
 double Parser::parsePower() {
+
   double result = parseFactor();
 
   if (currentPosition < tokens.size() &&
@@ -161,18 +137,21 @@ double Parser::parseFactor() {
 
   // Negative numbers
   if (token.getType() == TokenType::Minus) {
+
     currentPosition++;
+
     return -parseFactor();
   }
 
   // Numbers
   if (token.getType() == TokenType::Number) {
+
     currentPosition++;
 
     return std::stod(token.getValue());
   }
 
-  // Variables OR Functions
+  // Variables or Functions
   if (token.getType() == TokenType::Identifier) {
 
     currentPosition++;
@@ -195,6 +174,7 @@ double Parser::parseFactor() {
             tokens[currentPosition].getType() == TokenType::Comma) {
 
           currentPosition++;
+
           continue;
         }
 
@@ -209,11 +189,7 @@ double Parser::parseFactor() {
 
       currentPosition++;
 
-      if (functions.find(name) == functions.end()) {
-        throw std::runtime_error("Unknown function: " + name);
-      }
-
-      return functions[name](arguments);
+      return functions.call(name, arguments);
     }
 
     // Variable lookup

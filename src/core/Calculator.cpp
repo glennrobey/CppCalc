@@ -9,7 +9,7 @@ double Calculator::evaluate(const std::string &expression) {
 
   auto tokens = tokenizer.tokenize(expression);
 
-  Parser parser(tokens, variables);
+  Parser parser(tokens, variables, functions);
 
   double result = parser.parse();
 

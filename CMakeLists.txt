@@ -10,6 +10,7 @@ add_executable(
     C++Calc
     src/cli/main.cpp
     src/core/Calculator.cpp
+    src/core/Functions.cpp
     src/core/Parser.cpp
     src/core/Token.cpp
     src/core/Tokenizer.cpp
