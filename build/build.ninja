@@ -115,6 +115,17 @@ build CMakeFiles/C++Calc.dir/src/core/History.cpp.obj: CXX_COMPILER__C.2b.2bCalc
   TARGET_PDB = C++Calc.pdb
   TARGET_SUPPORT_DIR = CMakeFiles\C++Calc.dir
 
+build CMakeFiles/C++Calc.dir/src/core/Variables.cpp.obj: CXX_COMPILER__C.2b.2bCalc_unscanned_Debug C$:/Users/Glenn/OneDrive/Desktop/C++Calc/src/core/Variables.cpp || cmake_object_order_depends_target_C++Calc
+  CONFIG = Debug
+  DEP_FILE = CMakeFiles\C++Calc.dir\src\core\Variables.cpp.obj.d
+  FLAGS = -O0 -g -Xclang -gcodeview -std=gnu++23 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
+  INCLUDES = -IC:/Users/Glenn/OneDrive/Desktop/C++Calc/include
+  OBJECT_DIR = CMakeFiles\C++Calc.dir
+  OBJECT_FILE_DIR = CMakeFiles\C++Calc.dir\src\core
+  TARGET_COMPILE_PDB = CMakeFiles\C++Calc.dir\
+  TARGET_PDB = C++Calc.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\C++Calc.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target C++Calc
@@ -123,7 +134,7 @@ build CMakeFiles/C++Calc.dir/src/core/History.cpp.obj: CXX_COMPILER__C.2b.2bCalc
 #############################################
 # Link the executable C++Calc.exe
 
-build C++Calc.exe: CXX_EXECUTABLE_LINKER__C.2b.2bCalc_Debug CMakeFiles/C++Calc.dir/src/cli/main.cpp.obj CMakeFiles/C++Calc.dir/src/core/Calculator.cpp.obj CMakeFiles/C++Calc.dir/src/core/Parser.cpp.obj CMakeFiles/C++Calc.dir/src/core/Token.cpp.obj CMakeFiles/C++Calc.dir/src/core/Tokenizer.cpp.obj CMakeFiles/C++Calc.dir/src/core/History.cpp.obj
+build C++Calc.exe: CXX_EXECUTABLE_LINKER__C.2b.2bCalc_Debug CMakeFiles/C++Calc.dir/src/cli/main.cpp.obj CMakeFiles/C++Calc.dir/src/core/Calculator.cpp.obj CMakeFiles/C++Calc.dir/src/core/Parser.cpp.obj CMakeFiles/C++Calc.dir/src/core/Token.cpp.obj CMakeFiles/C++Calc.dir/src/core/Tokenizer.cpp.obj CMakeFiles/C++Calc.dir/src/core/History.cpp.obj CMakeFiles/C++Calc.dir/src/core/Variables.cpp.obj
   CONFIG = Debug
   FLAGS = -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
   LINK_FLAGS = -Xlinker /subsystem:console -fuse-ld=lld

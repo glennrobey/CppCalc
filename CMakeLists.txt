@@ -14,6 +14,7 @@ add_executable(
     src/core/Token.cpp
     src/core/Tokenizer.cpp
     src/core/History.cpp
+    src/core/Variables.cpp
 
 )
 

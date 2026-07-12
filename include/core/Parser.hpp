@@ -1,7 +1,8 @@
-
 #pragma once
 
 #include "core/Token.hpp"
+#include "core/Variables.hpp"
+
 #include <cstddef>
 #include <functional>
 #include <string>
@@ -10,15 +11,18 @@
 
 class Parser {
 public:
-  Parser(std::vector<Token> tokens,
-         std::unordered_map<std::string, double> &variables);
+  Parser(std::vector<Token> tokens, Variables &variables);
+
   double parse();
 
 private:
   std::vector<Token> tokens;
-  std::unordered_map<std::string, double> &variables;
+
+  Variables &variables;
+
   std::unordered_map<std::string, std::function<double(std::vector<double>)>>
       functions;
+
   size_t currentPosition = 0;
 
   double parseAssignment();

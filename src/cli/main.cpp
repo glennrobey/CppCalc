@@ -29,9 +29,8 @@ int main() {
       }
       continue;
     }
-
     if (input == "vars") {
-      for (const auto &entry : calculator.getVariables()) {
+      for (const auto &entry : calculator.getVariables().getAll()) {
         std::cout << entry.first << "=" << entry.second << "\n";
       }
       continue;
@@ -39,7 +38,7 @@ int main() {
 
     if (input == "clear") {
 
-      calculator.clearVariables();
+      calculator.clear();
 
       std::cout << "Variables cleared\n";
       continue;

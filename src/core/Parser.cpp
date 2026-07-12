@@ -1,12 +1,11 @@
 #include "core/Parser.hpp"
+
 #include <cmath>
 #include <stdexcept>
 #include <string>
-#include <unordered_map>
 #include <vector>
 
-Parser::Parser(std::vector<Token> tokens,
-               std::unordered_map<std::string, double> &variables)
+Parser::Parser(std::vector<Token> tokens, Variables &variables)
     : tokens(tokens), variables(variables) {
 
   functions["sqrt"] = [](std::vector<double> args) {
@@ -50,6 +49,7 @@ Parser::Parser(std::vector<Token> tokens,
     return std::pow(args[0], args[1]);
   };
 }
+
 double Parser::parse() {
   double result = parseAssignment();
 
@@ -75,7 +75,7 @@ double Parser::parseAssignment() {
 
     double value = parseExpression();
 
-    variables[variableName] = value;
+    variables.set(variableName, value);
 
     return value;
   }
@@ -217,11 +217,7 @@ double Parser::parseFactor() {
     }
 
     // Variable lookup
-    if (variables.find(name) == variables.end()) {
-      throw std::runtime_error("Unknown variable: " + name);
-    }
-
-    return variables[name];
+    return variables.get(name);
   }
 
   // Parentheses

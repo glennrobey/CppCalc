@@ -2,9 +2,9 @@
 
 #include "core/History.hpp"
 #include "core/Tokenizer.hpp"
+#include "core/Variables.hpp"
 
 #include <string>
-#include <unordered_map>
 
 class Calculator {
 public:
@@ -13,17 +13,15 @@ public:
   double evaluate(const std::string &expression);
 
   void reset();
-  void clearVariables();
+  void clear();
 
-  const std::unordered_map<std::string, double> &getVariables() const;
+  const Variables &getVariables() const;
   const History &getHistory() const;
 
 private:
-  void initializeVariables();
-
   Tokenizer tokenizer;
 
-  std::unordered_map<std::string, double> variables;
+  Variables variables;
 
   History history;
 };
