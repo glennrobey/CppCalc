@@ -1,10 +1,10 @@
 #pragma once
 
+#include "core/History.hpp"
 #include "core/Tokenizer.hpp"
 
 #include <string>
 #include <unordered_map>
-#include <vector>
 
 class Calculator {
 public:
@@ -16,7 +16,7 @@ public:
   void clearVariables();
 
   const std::unordered_map<std::string, double> &getVariables() const;
-  const std::vector<std::string> &getHistory() const;
+  const History &getHistory() const;
 
 private:
   void initializeVariables();
@@ -24,5 +24,6 @@ private:
   Tokenizer tokenizer;
 
   std::unordered_map<std::string, double> variables;
-  std::vector<std::string> history;
+
+  History history;
 };

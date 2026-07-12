@@ -1,25 +1,15 @@
-#include "core/Parser.hpp"
-#include "core/Tokenizer.hpp"
+#include "core/Calculator.hpp"
+
 #include <cctype>
+#include <exception>
 #include <iostream>
 #include <string>
-#include <unordered_map>
-#include <vector>
-
-void initializeVariables(std::unordered_map<std::string, double> &variables) {
-  variables["ans"] = 0;
-  variables["pi"] = 3.141592653589793;
-  variables["e"] = 2.718281828459045;
-}
 
 int main() {
   std::cout << "C++Calc starting...\n";
 
-  Tokenizer tokenizer;
-  std::unordered_map<std::string, double> variables;
-  std::vector<std::string> history;
+  Calculator calculator;
 
-  initializeVariables(variables);
   while (true) {
     std::string input;
 
@@ -34,33 +24,30 @@ int main() {
     }
 
     if (input == "history") {
-      for (const auto &entry : history) {
+      for (const auto &entry : calculator.getHistory().getEntries()) {
         std::cout << entry << "\n";
       }
       continue;
     }
 
     if (input == "vars") {
-      for (const auto &entry : variables) {
+      for (const auto &entry : calculator.getVariables()) {
         std::cout << entry.first << "=" << entry.second << "\n";
       }
       continue;
     }
 
     if (input == "clear") {
-      variables.clear();
 
-      initializeVariables(variables);
+      calculator.clearVariables();
 
       std::cout << "Variables cleared\n";
       continue;
     }
 
     if (input == "reset") {
-      variables.clear();
-      history.clear();
 
-      initializeVariables(variables);
+      calculator.reset();
 
       std::cout << "Calculator reset\n";
       continue;
@@ -92,15 +79,8 @@ int main() {
     }
 
     try {
-      auto tokens = tokenizer.tokenize(input);
 
-      Parser parser(tokens, variables);
-
-      double result = parser.parse();
-
-      variables["ans"] = result;
-
-      history.push_back(input + " = " + std::to_string(result));
+      double result = calculator.evaluate(input);
 
       std::cout << result << "\n";
 

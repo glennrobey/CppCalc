@@ -25,3 +25,7 @@
 3	656	8055046974201873	CMakeFiles/C++Calc.dir/src/cli/main.cpp.obj	bef6630ae43a034b
 3	288	8055047668796973	CMakeFiles/C++Calc.dir/src/core/Tokenizer.cpp.obj	c53023325ee9690
 289	421	8055047671711951	C++Calc.exe	f0afe8e2bfb87e35
+139	643	8055865161821153	CMakeFiles/C++Calc.dir/src/core/History.cpp.obj	f80469fd996fe56f
+133	654	8055865161753863	CMakeFiles/C++Calc.dir/src/core/Calculator.cpp.obj	b19153499c5fded7
+78	674	8055865161195017	CMakeFiles/C++Calc.dir/src/cli/main.cpp.obj	bef6630ae43a034b
+674	891	8055865167052717	C++Calc.exe	f0afe8e2bfb87e35
