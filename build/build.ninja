@@ -159,6 +159,125 @@ build C++Calc.exe: CXX_EXECUTABLE_LINKER__C.2b.2bCalc_Debug CMakeFiles/C++Calc.d
   TARGET_PDB = C++Calc.pdb
   TARGET_SUPPORT_DIR = CMakeFiles\C++Calc.dir
 
+# =============================================================================
+# Object build statements for EXECUTABLE target CalculatorTests
+
+
+#############################################
+# Order-only phony target for CalculatorTests
+
+build cmake_object_order_depends_target_CalculatorTests: phony || .
+
+build CMakeFiles/CalculatorTests.dir/tests/CalculatorTests.cpp.obj: CXX_COMPILER__CalculatorTests_unscanned_Debug C$:/Users/Glenn/OneDrive/Desktop/C++Calc/tests/CalculatorTests.cpp || cmake_object_order_depends_target_CalculatorTests
+  CONFIG = Debug
+  DEP_FILE = CMakeFiles\CalculatorTests.dir\tests\CalculatorTests.cpp.obj.d
+  FLAGS = -O0 -g -Xclang -gcodeview -std=gnu++23 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
+  INCLUDES = -IC:/Users/Glenn/OneDrive/Desktop/C++Calc/include
+  OBJECT_DIR = CMakeFiles\CalculatorTests.dir
+  OBJECT_FILE_DIR = CMakeFiles\CalculatorTests.dir\tests
+  TARGET_COMPILE_PDB = CMakeFiles\CalculatorTests.dir\
+  TARGET_PDB = CalculatorTests.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\CalculatorTests.dir
+
+build CMakeFiles/CalculatorTests.dir/src/core/Calculator.cpp.obj: CXX_COMPILER__CalculatorTests_unscanned_Debug C$:/Users/Glenn/OneDrive/Desktop/C++Calc/src/core/Calculator.cpp || cmake_object_order_depends_target_CalculatorTests
+  CONFIG = Debug
+  DEP_FILE = CMakeFiles\CalculatorTests.dir\src\core\Calculator.cpp.obj.d
+  FLAGS = -O0 -g -Xclang -gcodeview -std=gnu++23 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
+  INCLUDES = -IC:/Users/Glenn/OneDrive/Desktop/C++Calc/include
+  OBJECT_DIR = CMakeFiles\CalculatorTests.dir
+  OBJECT_FILE_DIR = CMakeFiles\CalculatorTests.dir\src\core
+  TARGET_COMPILE_PDB = CMakeFiles\CalculatorTests.dir\
+  TARGET_PDB = CalculatorTests.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\CalculatorTests.dir
+
+build CMakeFiles/CalculatorTests.dir/src/core/Functions.cpp.obj: CXX_COMPILER__CalculatorTests_unscanned_Debug C$:/Users/Glenn/OneDrive/Desktop/C++Calc/src/core/Functions.cpp || cmake_object_order_depends_target_CalculatorTests
+  CONFIG = Debug
+  DEP_FILE = CMakeFiles\CalculatorTests.dir\src\core\Functions.cpp.obj.d
+  FLAGS = -O0 -g -Xclang -gcodeview -std=gnu++23 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
+  INCLUDES = -IC:/Users/Glenn/OneDrive/Desktop/C++Calc/include
+  OBJECT_DIR = CMakeFiles\CalculatorTests.dir
+  OBJECT_FILE_DIR = CMakeFiles\CalculatorTests.dir\src\core
+  TARGET_COMPILE_PDB = CMakeFiles\CalculatorTests.dir\
+  TARGET_PDB = CalculatorTests.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\CalculatorTests.dir
+
+build CMakeFiles/CalculatorTests.dir/src/core/Parser.cpp.obj: CXX_COMPILER__CalculatorTests_unscanned_Debug C$:/Users/Glenn/OneDrive/Desktop/C++Calc/src/core/Parser.cpp || cmake_object_order_depends_target_CalculatorTests
+  CONFIG = Debug
+  DEP_FILE = CMakeFiles\CalculatorTests.dir\src\core\Parser.cpp.obj.d
+  FLAGS = -O0 -g -Xclang -gcodeview -std=gnu++23 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
+  INCLUDES = -IC:/Users/Glenn/OneDrive/Desktop/C++Calc/include
+  OBJECT_DIR = CMakeFiles\CalculatorTests.dir
+  OBJECT_FILE_DIR = CMakeFiles\CalculatorTests.dir\src\core
+  TARGET_COMPILE_PDB = CMakeFiles\CalculatorTests.dir\
+  TARGET_PDB = CalculatorTests.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\CalculatorTests.dir
+
+build CMakeFiles/CalculatorTests.dir/src/core/Token.cpp.obj: CXX_COMPILER__CalculatorTests_unscanned_Debug C$:/Users/Glenn/OneDrive/Desktop/C++Calc/src/core/Token.cpp || cmake_object_order_depends_target_CalculatorTests
+  CONFIG = Debug
+  DEP_FILE = CMakeFiles\CalculatorTests.dir\src\core\Token.cpp.obj.d
+  FLAGS = -O0 -g -Xclang -gcodeview -std=gnu++23 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
+  INCLUDES = -IC:/Users/Glenn/OneDrive/Desktop/C++Calc/include
+  OBJECT_DIR = CMakeFiles\CalculatorTests.dir
+  OBJECT_FILE_DIR = CMakeFiles\CalculatorTests.dir\src\core
+  TARGET_COMPILE_PDB = CMakeFiles\CalculatorTests.dir\
+  TARGET_PDB = CalculatorTests.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\CalculatorTests.dir
+
+build CMakeFiles/CalculatorTests.dir/src/core/Tokenizer.cpp.obj: CXX_COMPILER__CalculatorTests_unscanned_Debug C$:/Users/Glenn/OneDrive/Desktop/C++Calc/src/core/Tokenizer.cpp || cmake_object_order_depends_target_CalculatorTests
+  CONFIG = Debug
+  DEP_FILE = CMakeFiles\CalculatorTests.dir\src\core\Tokenizer.cpp.obj.d
+  FLAGS = -O0 -g -Xclang -gcodeview -std=gnu++23 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
+  INCLUDES = -IC:/Users/Glenn/OneDrive/Desktop/C++Calc/include
+  OBJECT_DIR = CMakeFiles\CalculatorTests.dir
+  OBJECT_FILE_DIR = CMakeFiles\CalculatorTests.dir\src\core
+  TARGET_COMPILE_PDB = CMakeFiles\CalculatorTests.dir\
+  TARGET_PDB = CalculatorTests.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\CalculatorTests.dir
+
+build CMakeFiles/CalculatorTests.dir/src/core/History.cpp.obj: CXX_COMPILER__CalculatorTests_unscanned_Debug C$:/Users/Glenn/OneDrive/Desktop/C++Calc/src/core/History.cpp || cmake_object_order_depends_target_CalculatorTests
+  CONFIG = Debug
+  DEP_FILE = CMakeFiles\CalculatorTests.dir\src\core\History.cpp.obj.d
+  FLAGS = -O0 -g -Xclang -gcodeview -std=gnu++23 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
+  INCLUDES = -IC:/Users/Glenn/OneDrive/Desktop/C++Calc/include
+  OBJECT_DIR = CMakeFiles\CalculatorTests.dir
+  OBJECT_FILE_DIR = CMakeFiles\CalculatorTests.dir\src\core
+  TARGET_COMPILE_PDB = CMakeFiles\CalculatorTests.dir\
+  TARGET_PDB = CalculatorTests.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\CalculatorTests.dir
+
+build CMakeFiles/CalculatorTests.dir/src/core/Variables.cpp.obj: CXX_COMPILER__CalculatorTests_unscanned_Debug C$:/Users/Glenn/OneDrive/Desktop/C++Calc/src/core/Variables.cpp || cmake_object_order_depends_target_CalculatorTests
+  CONFIG = Debug
+  DEP_FILE = CMakeFiles\CalculatorTests.dir\src\core\Variables.cpp.obj.d
+  FLAGS = -O0 -g -Xclang -gcodeview -std=gnu++23 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
+  INCLUDES = -IC:/Users/Glenn/OneDrive/Desktop/C++Calc/include
+  OBJECT_DIR = CMakeFiles\CalculatorTests.dir
+  OBJECT_FILE_DIR = CMakeFiles\CalculatorTests.dir\src\core
+  TARGET_COMPILE_PDB = CMakeFiles\CalculatorTests.dir\
+  TARGET_PDB = CalculatorTests.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\CalculatorTests.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target CalculatorTests
+
+
+#############################################
+# Link the executable CalculatorTests.exe
+
+build CalculatorTests.exe: CXX_EXECUTABLE_LINKER__CalculatorTests_Debug CMakeFiles/CalculatorTests.dir/tests/CalculatorTests.cpp.obj CMakeFiles/CalculatorTests.dir/src/core/Calculator.cpp.obj CMakeFiles/CalculatorTests.dir/src/core/Functions.cpp.obj CMakeFiles/CalculatorTests.dir/src/core/Parser.cpp.obj CMakeFiles/CalculatorTests.dir/src/core/Token.cpp.obj CMakeFiles/CalculatorTests.dir/src/core/Tokenizer.cpp.obj CMakeFiles/CalculatorTests.dir/src/core/History.cpp.obj CMakeFiles/CalculatorTests.dir/src/core/Variables.cpp.obj
+  CONFIG = Debug
+  FLAGS = -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd
+  LINK_FLAGS = -Xlinker /subsystem:console -fuse-ld=lld
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 -loldnames
+  OBJECT_DIR = CMakeFiles\CalculatorTests.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_COMPILE_PDB = CMakeFiles\CalculatorTests.dir\
+  TARGET_FILE = CalculatorTests.exe
+  TARGET_IMPLIB = CalculatorTests.lib
+  TARGET_PDB = CalculatorTests.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\CalculatorTests.dir
+
 
 #############################################
 # Utility command for edit_cache
@@ -188,6 +307,8 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 
 build C++Calc: phony C++Calc.exe
 
+build CalculatorTests: phony CalculatorTests.exe
+
 # =============================================================================
 # Folder targets.
 
@@ -196,7 +317,7 @@ build C++Calc: phony C++Calc.exe
 #############################################
 # Folder: C:/Users/Glenn/OneDrive/Desktop/C++Calc/build
 
-build all: phony C++Calc.exe
+build all: phony C++Calc.exe CalculatorTests.exe
 
 # =============================================================================
 # Built-in targets
