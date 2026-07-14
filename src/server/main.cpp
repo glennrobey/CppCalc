@@ -1,29 +1,29 @@
 #include "core/Calculator.hpp"
-
-#include <iostream>
-#include <string>
+#include <drogon/drogon.h>
 
 int main() {
 
-  Calculator calculator;
+  Calculator calc;
 
-  std::cout << "C++Calc server starting...\n";
+  drogon::app()
+      .registerHandler(
+          "/calculate",
+          [&calc](
+              const drogon::HttpRequestPtr &req,
+              std::function<void(const drogon::HttpResponsePtr &)> &&callback) {
+            auto expr = req->getParameter("expr");
 
-  std::string expression;
+            auto result = calc.evaluate(expr);
 
-  while (std::getline(std::cin, expression)) {
+            Json::Value json;
+            json["result"] = result;
 
-    try {
+            auto response = drogon::HttpResponse::newHttpJsonResponse(json);
 
-      double result = calculator.evaluate(expression);
-
-      std::cout << result << "\n";
-
-    } catch (const std::exception &error) {
-
-      std::cout << "Error: " << error.what() << "\n";
-    }
-  }
+            callback(response);
+          })
+      .addListener("127.0.0.1", 8080)
+      .run();
 
   return 0;
 }
