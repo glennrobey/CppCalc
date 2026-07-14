@@ -5,10 +5,18 @@ int main() {
 
   Calculator calc;
 
+  auto addCorsHeaders = [](const drogon::HttpResponsePtr &response) {
+    response->addHeader("Access-Control-Allow-Origin", "*");
+    response->addHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    response->addHeader("Access-Control-Allow-Headers", "Content-Type");
+  };
+
   drogon::app()
+
+      // Calculator endpoint
       .registerHandler(
           "/calculate",
-          [&calc](
+          [&calc, &addCorsHeaders](
               const drogon::HttpRequestPtr &req,
               std::function<void(const drogon::HttpResponsePtr &)> &&callback) {
             try {
@@ -22,6 +30,8 @@ int main() {
 
                 response->setStatusCode(drogon::k400BadRequest);
 
+                addCorsHeaders(response);
+
                 callback(response);
                 return;
               }
@@ -33,6 +43,8 @@ int main() {
 
               auto response = drogon::HttpResponse::newHttpJsonResponse(json);
 
+              addCorsHeaders(response);
+
               callback(response);
 
             } catch (const std::exception &e) {
@@ -43,10 +55,27 @@ int main() {
               auto response = drogon::HttpResponse::newHttpJsonResponse(json);
 
               response->setStatusCode(drogon::k400BadRequest);
+              addCorsHeaders(response);
 
               callback(response);
             }
           })
+
+      // Health check endpoint
+      .registerHandler(
+          "/health",
+          [&addCorsHeaders](
+              const drogon::HttpRequestPtr &req,
+              std::function<void(const drogon::HttpResponsePtr &)> &&callback) {
+            Json::Value json;
+            json["status"] = "ok";
+
+            auto response = drogon::HttpResponse::newHttpJsonResponse(json);
+
+            addCorsHeaders(response);
+            callback(response);
+          })
+
       .addListener("127.0.0.1", 8080)
       .run();
 
