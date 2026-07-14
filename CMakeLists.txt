@@ -48,8 +48,23 @@ add_executable(
     tests/CalculatorTests.cpp
 )
 
-
 target_link_libraries(
     CalculatorTests
     PRIVATE CppCalcCore
+)
+
+
+# Server
+find_package(Drogon CONFIG REQUIRED)
+add_executable(
+    CppCalcServer
+
+    src/server/main.cpp
+)
+
+target_link_libraries(
+    CppCalcServer
+    PRIVATE
+    CppCalcCore
+    Drogon::Drogon
 )
