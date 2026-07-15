@@ -1,10 +1,12 @@
 #include "cli/Commands.hpp"
 #include "core/Calculator.hpp"
 #include <drogon/drogon.h>
+#include <iostream>
 
 int main() {
   Calculator calc;
   Commands commands(calc);
+  std::cout << "C++Calc server running on port 8080\n";
 
   auto addCorsHeaders = [](const drogon::HttpResponsePtr &response) {
     response->addHeader("Access-Control-Allow-Origin", "*");
@@ -33,7 +35,7 @@ int main() {
       // Calculator endpoint
       .registerHandler(
           "/calculate",
-          [&calc, &addCorsHeaders](
+          [&calc, &commands, &addCorsHeaders](
               const drogon::HttpRequestPtr &req,
               std::function<void(const drogon::HttpResponsePtr &)> &&callback) {
             Json::Value responseJson;
@@ -55,10 +57,20 @@ int main() {
 
             try {
               auto expression = (*json)["expression"].asString();
+              std::cout << "Received: [" << expression << "]\n";
 
-              auto result = calc.evaluate(expression);
+              if (expression == "help" || expression == "vars" ||
+                  expression == "history" || expression == "clear" ||
+                  expression == "reset") {
 
-              responseJson["result"] = result;
+                responseJson["result"] = commands.handleCommand(expression);
+
+              } else {
+
+                auto result = calc.evaluate(expression);
+
+                responseJson["result"] = result;
+              }
 
               auto response =
                   drogon::HttpResponse::newHttpJsonResponse(responseJson);

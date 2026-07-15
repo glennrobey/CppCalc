@@ -26,35 +26,6 @@ function App() {
     "ENTER",
   ];
 
-  useEffect(() => {
-    function handleKeyboard(event: KeyboardEvent) {
-      const key = event.key;
-
-      if ("0123456789+-*/.".includes(key)) {
-        setExpression((prev) => prev + key);
-      }
-
-      if (key === "Enter") {
-        calculate();
-      }
-
-      if (key === "Backspace") {
-        setExpression((prev) => prev.slice(0, -1));
-      }
-
-      if (key === "Escape") {
-        setExpression("");
-        setResult("");
-      }
-    }
-
-    window.addEventListener("keydown", handleKeyboard);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyboard);
-    };
-  }, []);
-
   async function calculate() {
     try {
       const response = await fetch("http://localhost:8080/calculate", {
@@ -79,6 +50,68 @@ function App() {
     }
   }
 
+  async function runCommand() {
+    if (!commandInput.trim()) return;
+
+    try {
+      const response = await fetch("http://localhost:8080/calculate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          expression: commandInput,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.result !== undefined) {
+        setResult(data.result);
+      } else {
+        setResult(data.error);
+      }
+
+      setCommandInput("");
+    } catch {
+      setResult("Server connection failed");
+    }
+  }
+
+  useEffect(() => {
+    function handleKeyboard(event: KeyboardEvent) {
+      const key = event.key;
+
+      if ("0123456789+-*/.".includes(key)) {
+        setExpression((prev) => prev + key);
+      }
+
+      if (key === "Enter") {
+        if (commandInput) {
+          runCommand();
+        } else {
+          calculate();
+        }
+      }
+
+      if (key === "Backspace") {
+        setExpression((prev) => prev.slice(0, -1));
+      }
+
+      if (key === "Escape") {
+        setExpression("");
+        setResult("");
+        setCommandInput("");
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyboard);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyboard);
+    };
+  }, [commandInput]);
+
   function handleButtonClick(button: string) {
     if (button === "CMD") {
       setShowCommands(!showCommands);
@@ -90,7 +123,7 @@ function App() {
       return;
     }
 
-    setExpression(expression + button);
+    setExpression((prev) => prev + button);
   }
 
   return (
@@ -166,36 +199,15 @@ function App() {
             <h2 className="mb-3 text-cyan-400 font-mono">Commands</h2>
 
             <div className="flex flex-col gap-2">
-              <button
-                className="
-                  rounded
-                  bg-slate-800
-                  p-2
-                  hover:bg-blue-600
-                "
-              >
+              <button className="rounded bg-slate-800 p-2 hover:bg-blue-600">
                 Variables
               </button>
 
-              <button
-                className="
-                  rounded
-                  bg-slate-800
-                  p-2
-                  hover:bg-blue-600
-                "
-              >
+              <button className="rounded bg-slate-800 p-2 hover:bg-blue-600">
                 History
               </button>
 
-              <button
-                className="
-                  rounded
-                  bg-slate-800
-                  p-2
-                  hover:bg-blue-600
-                "
-              >
+              <button className="rounded bg-slate-800 p-2 hover:bg-blue-600">
                 Clear
               </button>
             </div>
@@ -205,30 +217,35 @@ function App() {
         {/* Command input */}
         <div
           className="
-  mt-4
-  flex
-  items-center
-  rounded-lg
-  border
-  border-cyan-400
-  bg-slate-950
-  p-3
-"
+            mt-4
+            flex
+            items-center
+            rounded-lg
+            border
+            border-cyan-400
+            bg-slate-950
+            p-3
+          "
         >
           <span className="text-cyan-400 font-mono">&gt;</span>
 
           <input
             className="
-      ml-2
-      flex-1
-      bg-transparent
-      font-mono
-      text-cyan-400
-      outline-none
-    "
+              ml-2
+              flex-1
+              bg-transparent
+              font-mono
+              text-cyan-400
+              outline-none
+            "
             placeholder="type help for commands"
             value={commandInput}
             onChange={(e) => setCommandInput(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                runCommand();
+              }
+            }}
           />
         </div>
       </div>
