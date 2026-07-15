@@ -12,6 +12,22 @@ int main() {
 
   drogon::app()
 
+      // CORS preflight handler
+      .registerHandler(
+          "/calculate",
+          [&addCorsHeaders](
+              const drogon::HttpRequestPtr &req,
+              std::function<void(const drogon::HttpResponsePtr &)> &&callback) {
+            auto response = drogon::HttpResponse::newHttpResponse();
+
+            response->setStatusCode(drogon::k204NoContent);
+
+            addCorsHeaders(response);
+
+            callback(response);
+          },
+          {drogon::Options})
+
       // Calculator endpoint
       .registerHandler(
           "/calculate",
