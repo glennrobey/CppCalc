@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
   const [expression, setExpression] = useState("");
@@ -25,6 +25,35 @@ function App() {
     "+",
     "ENTER",
   ];
+
+  useEffect(() => {
+    function handleKeyboard(event: KeyboardEvent) {
+      const key = event.key;
+
+      if ("0123456789+-*/.".includes(key)) {
+        setExpression((prev) => prev + key);
+      }
+
+      if (key === "Enter") {
+        calculate();
+      }
+
+      if (key === "Backspace") {
+        setExpression((prev) => prev.slice(0, -1));
+      }
+
+      if (key === "Escape") {
+        setExpression("");
+        setResult("");
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyboard);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyboard);
+    };
+  }, []);
 
   async function calculate() {
     try {
@@ -174,24 +203,34 @@ function App() {
         )}
 
         {/* Command input */}
-        <input
+        <div
           className="
-            mt-4
-            w-full
-            rounded-lg
-            border
-            border-cyan-400
-            bg-slate-950
-            p-3
-            font-mono
-            text-cyan-400
-            outline-none
-            placeholder:text-slate-500
-          "
-          placeholder="calc> type help for commands"
-          value={commandInput}
-          onChange={(e) => setCommandInput(e.target.value)}
-        />
+  mt-4
+  flex
+  items-center
+  rounded-lg
+  border
+  border-cyan-400
+  bg-slate-950
+  p-3
+"
+        >
+          <span className="text-cyan-400 font-mono">&gt;</span>
+
+          <input
+            className="
+      ml-2
+      flex-1
+      bg-transparent
+      font-mono
+      text-cyan-400
+      outline-none
+    "
+            placeholder="type help for commands"
+            value={commandInput}
+            onChange={(e) => setCommandInput(e.target.value)}
+          />
+        </div>
       </div>
     </div>
   );
