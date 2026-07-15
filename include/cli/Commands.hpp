@@ -2,15 +2,18 @@
 
 #include "core/Calculator.hpp"
 
+#include <string>
+
 class Commands {
 public:
-  Commands();
+  Commands(Calculator &calculator);
 
   void run();
 
-private:
-  Calculator calculator;
+  std::string handleCommand(const std::string &input);
 
-  void printHelp();
-  void handleCommand(const std::string &input);
+private:
+  Calculator &calculator;
+
+  std::string printHelp();
 };

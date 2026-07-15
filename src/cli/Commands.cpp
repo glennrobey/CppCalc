@@ -1,11 +1,10 @@
 #include "cli/Commands.hpp"
 
-#include <cctype>
 #include <exception>
 #include <iostream>
 #include <string>
 
-Commands::Commands() = default;
+Commands::Commands(Calculator &calculator) : calculator(calculator) {}
 
 void Commands::run() {
 
@@ -25,72 +24,70 @@ void Commands::run() {
       break;
     }
 
-    handleCommand(input);
+    std::cout << handleCommand(input) << "\n";
   }
 }
 
-void Commands::handleCommand(const std::string &input) {
+std::string Commands::handleCommand(const std::string &input) {
 
   if (input == "help") {
-    printHelp();
-    return;
+    return printHelp();
   }
 
   if (input == "vars") {
 
+    std::string output;
+
     for (const auto &entry : calculator.getVariables().getAll()) {
-      std::cout << entry.first << "=" << entry.second << "\n";
+      output += entry.first + "=" + std::to_string(entry.second) + "\n";
     }
 
-    return;
+    return output;
   }
-
   if (input == "history") {
 
+    std::string output;
+
     for (const auto &entry : calculator.getHistory().getEntries()) {
-      std::cout << entry << "\n";
+      output += entry + "\n";
     }
 
-    return;
+    return output;
   }
 
   if (input == "clear") {
 
     calculator.clear();
 
-    std::cout << "Variables cleared\n";
-
-    return;
+    return "Variables cleared";
   }
 
   if (input == "reset") {
 
     calculator.reset();
 
-    std::cout << "Calculator reset\n";
-
-    return;
+    return "Calculator reset";
   }
 
   try {
 
     double result = calculator.evaluate(input);
 
-    std::cout << result << "\n";
+    return std::to_string(result);
 
   } catch (const std::exception &error) {
 
-    std::cout << "Error: " << error.what() << "\n";
+    return "Error: " + std::string(error.what());
   }
 }
 
-void Commands::printHelp() {
+std::string Commands::printHelp() {
 
-  std::cout << "Commands:\n";
-  std::cout << "  help      Show this message\n";
-  std::cout << "  vars      Show variables\n";
-  std::cout << "  history   Show calculations\n";
-  std::cout << "  clear     Clear variables\n";
-  std::cout << "  reset     Factory reset calculator\n";
-  std::cout << "  exit      Quit calculator\n";
+  return "Commands:\n"
+         "  help      Show this message\n"
+         "  vars      Show variables\n"
+         "  history   Show calculations\n"
+         "  clear     Clear variables\n"
+         "  reset     Factory reset calculator\n"
+         "  exit      Quit calculator";
 }
