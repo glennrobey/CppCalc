@@ -65,15 +65,40 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white flex items-center justify-center">
-      <div className="w-96 rounded-xl border border-green-500 bg-zinc-900 p-6 shadow-lg">
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center">
+      <div
+        className="
+          w-96
+          rounded-xl
+          border
+          border-cyan-400
+          bg-slate-900
+          p-6
+          shadow-lg
+        "
+      >
+        {/* Terminal header */}
+        <div className="mb-4 text-sm text-cyan-400 font-mono">
+          cppcalc@localhost:~
+        </div>
+
         {/* Calculator display */}
-        <div className="mb-4 rounded-lg bg-black border border-green-500 p-4">
-          <div className="text-right text-green-400 text-xl">
+        <div
+          className="
+            mb-4
+            rounded-lg
+            border
+            border-cyan-400
+            bg-slate-950
+            p-4
+            font-mono
+          "
+        >
+          <div className="text-right text-cyan-400 text-xl">
             {expression || "0"}
           </div>
 
-          <div className="text-right text-white text-3xl">{result}</div>
+          <div className="text-right text-slate-100 text-3xl">{result}</div>
         </div>
 
         {/* Keypad */}
@@ -84,10 +109,11 @@ function App() {
               onClick={() => handleButtonClick(button)}
               className="
                 rounded-lg
-                bg-zinc-800
+                bg-slate-800
                 p-4
                 text-xl
-                hover:bg-green-600
+                font-mono
+                hover:bg-blue-600
                 transition
               "
             >
@@ -98,15 +124,51 @@ function App() {
 
         {/* Command menu */}
         {showCommands && (
-          <div className="mt-4 rounded-lg border border-green-500 p-4">
-            <h2 className="mb-3 text-green-400">Commands</h2>
+          <div
+            className="
+              mt-4
+              rounded-lg
+              border
+              border-cyan-400
+              p-4
+              bg-slate-950
+            "
+          >
+            <h2 className="mb-3 text-cyan-400 font-mono">Commands</h2>
 
             <div className="flex flex-col gap-2">
-              <button className="rounded bg-zinc-800 p-2">Variables</button>
+              <button
+                className="
+                  rounded
+                  bg-slate-800
+                  p-2
+                  hover:bg-blue-600
+                "
+              >
+                Variables
+              </button>
 
-              <button className="rounded bg-zinc-800 p-2">History</button>
+              <button
+                className="
+                  rounded
+                  bg-slate-800
+                  p-2
+                  hover:bg-blue-600
+                "
+              >
+                History
+              </button>
 
-              <button className="rounded bg-zinc-800 p-2">Clear</button>
+              <button
+                className="
+                  rounded
+                  bg-slate-800
+                  p-2
+                  hover:bg-blue-600
+                "
+              >
+                Clear
+              </button>
             </div>
           </div>
         )}
@@ -118,13 +180,15 @@ function App() {
             w-full
             rounded-lg
             border
-            border-green-500
-            bg-black
+            border-cyan-400
+            bg-slate-950
             p-3
-            text-green-400
+            font-mono
+            text-cyan-400
             outline-none
+            placeholder:text-slate-500
           "
-          placeholder="> type command or expression"
+          placeholder="calc> type command or expression"
           value={commandInput}
           onChange={(e) => setCommandInput(e.target.value)}
         />
