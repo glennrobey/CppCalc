@@ -30,7 +30,9 @@ function App() {
 
   return (
     <div>
-      <h1>C++ Smart Calculator</h1>
+      <h1 className="text-5xl font-bold text-green-400">
+        C++ Smart Calculator
+      </h1>
 
       <input
         value={expression}
