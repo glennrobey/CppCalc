@@ -2,7 +2,6 @@
 #include <drogon/drogon.h>
 
 int main() {
-
   Calculator calc;
 
   auto addCorsHeaders = [](const drogon::HttpResponsePtr &response) {
@@ -19,47 +18,49 @@ int main() {
           [&calc, &addCorsHeaders](
               const drogon::HttpRequestPtr &req,
               std::function<void(const drogon::HttpResponsePtr &)> &&callback) {
+            Json::Value responseJson;
+
+            auto json = req->getJsonObject();
+
+            if (!json || !json->isMember("expression")) {
+              responseJson["error"] = "Missing expression";
+
+              auto response =
+                  drogon::HttpResponse::newHttpJsonResponse(responseJson);
+
+              response->setStatusCode(drogon::k400BadRequest);
+              addCorsHeaders(response);
+
+              callback(response);
+              return;
+            }
+
             try {
-              auto expr = req->getParameter("expr");
+              auto expression = (*json)["expression"].asString();
 
-              if (expr.empty()) {
-                Json::Value json;
-                json["error"] = "Missing expression";
+              auto result = calc.evaluate(expression);
 
-                auto response = drogon::HttpResponse::newHttpJsonResponse(json);
+              responseJson["result"] = result;
 
-                response->setStatusCode(drogon::k400BadRequest);
-
-                addCorsHeaders(response);
-
-                callback(response);
-                return;
-              }
-
-              auto result = calc.evaluate(expr);
-
-              Json::Value json;
-              json["result"] = result;
-
-              auto response = drogon::HttpResponse::newHttpJsonResponse(json);
+              auto response =
+                  drogon::HttpResponse::newHttpJsonResponse(responseJson);
 
               addCorsHeaders(response);
 
               callback(response);
-
             } catch (const std::exception &e) {
+              responseJson["error"] = e.what();
 
-              Json::Value json;
-              json["error"] = e.what();
-
-              auto response = drogon::HttpResponse::newHttpJsonResponse(json);
+              auto response =
+                  drogon::HttpResponse::newHttpJsonResponse(responseJson);
 
               response->setStatusCode(drogon::k400BadRequest);
               addCorsHeaders(response);
 
               callback(response);
             }
-          })
+          },
+          {drogon::Post})
 
       // Health check endpoint
       .registerHandler(
@@ -73,6 +74,7 @@ int main() {
             auto response = drogon::HttpResponse::newHttpJsonResponse(json);
 
             addCorsHeaders(response);
+
             callback(response);
           })
 
