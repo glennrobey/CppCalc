@@ -188,7 +188,7 @@ function App() {
             outline-none
             placeholder:text-slate-500
           "
-          placeholder="calc> type command or expression"
+          placeholder="calc> type help for commands"
           value={commandInput}
           onChange={(e) => setCommandInput(e.target.value)}
         />
