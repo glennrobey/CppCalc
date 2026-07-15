@@ -17,6 +17,7 @@ add_library(
     src/core/Tokenizer.cpp
     src/core/History.cpp
     src/core/Variables.cpp
+    src/cli/Commands.cpp
 )
 
 
@@ -31,7 +32,6 @@ add_executable(
     C++Calc
 
     src/cli/main.cpp
-    src/cli/Commands.cpp
 )
 
 

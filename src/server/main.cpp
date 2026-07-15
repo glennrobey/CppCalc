@@ -1,8 +1,10 @@
+#include "cli/Commands.hpp"
 #include "core/Calculator.hpp"
 #include <drogon/drogon.h>
 
 int main() {
   Calculator calc;
+  Commands commands(calc);
 
   auto addCorsHeaders = [](const drogon::HttpResponsePtr &response) {
     response->addHeader("Access-Control-Allow-Origin", "*");
