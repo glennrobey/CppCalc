@@ -5,6 +5,8 @@ function App() {
   const [result, setResult] = useState("");
   const [commandInput, setCommandInput] = useState("");
   const [showCommands, setShowCommands] = useState(false);
+  const [commandHistory, setCommandHistory] = useState<string[]>([]);
+  const [historyIndex, setHistoryIndex] = useState(-1);
   const [terminalOutput, setTerminalOutput] = useState<string[]>([
     "Welcome to C++Calc!",
     "Type 'help' for commands.",
@@ -56,6 +58,9 @@ function App() {
 
   async function runCommand() {
     if (!commandInput.trim()) return;
+
+    setCommandHistory((prev) => [...prev, commandInput]);
+    setHistoryIndex(-1);
 
     try {
       const response = await fetch("http://localhost:8080/calculate", {
@@ -280,6 +285,37 @@ function App() {
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 runCommand();
+              }
+
+              if (e.key === "ArrowUp") {
+                e.preventDefault();
+
+                if (commandHistory.length === 0) return;
+
+                const newIndex =
+                  historyIndex === -1
+                    ? commandHistory.length - 1
+                    : Math.max(historyIndex - 1, 0);
+
+                setHistoryIndex(newIndex);
+                setCommandInput(commandHistory[newIndex]);
+              }
+
+              if (e.key === "ArrowDown") {
+                e.preventDefault();
+
+                if (commandHistory.length === 0) return;
+
+                const newIndex = historyIndex + 1;
+
+                if (newIndex >= commandHistory.length) {
+                  setHistoryIndex(-1);
+                  setCommandInput("");
+                  return;
+                }
+
+                setHistoryIndex(newIndex);
+                setCommandInput(commmandHistory[newIndex]);
               }
             }}
           />
