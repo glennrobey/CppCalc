@@ -38,6 +38,9 @@ std::string Commands::handleCommand(const std::string &input) {
 
     std::string output;
 
+    output += "Variables:\n";
+    output += "----------------\n";
+
     for (const auto &entry : calculator.getVariables().getAll()) {
       output += entry.first + "=" + std::to_string(entry.second) + "\n";
     }
@@ -47,6 +50,9 @@ std::string Commands::handleCommand(const std::string &input) {
   if (input == "history") {
 
     std::string output;
+
+    output += "History:\n";
+    output += "----------------\n";
 
     for (const auto &entry : calculator.getHistory().getEntries()) {
       output += entry + "\n";
