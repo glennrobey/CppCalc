@@ -19,7 +19,6 @@ function App() {
       behavior: "smooth",
     });
   }, [terminalOutput]);
-
   const buttons = [
     "7",
     "8",
@@ -64,10 +63,10 @@ function App() {
     }
   }
 
-  async function runCommand() {
-    if (!commandInput.trim()) return;
+  async function runCommand(command = commandInput) {
+    if (!command.trim()) return;
 
-    setCommandHistory((prev) => [...prev, commandInput]);
+    setCommandHistory((prev) => [...prev, command]);
     setHistoryIndex(-1);
 
     try {
@@ -77,7 +76,7 @@ function App() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          expression: commandInput,
+          expression: command,
         }),
       });
 
@@ -88,7 +87,7 @@ function App() {
 
         setTerminalOutput((prev) => [
           ...prev,
-          `> ${commandInput}`,
+          `> ${command}`,
           String(data.result),
         ]);
       } else {
@@ -96,7 +95,7 @@ function App() {
 
         setTerminalOutput((prev) => [
           ...prev,
-          `> ${commandInput}`,
+          `> ${command}`,
           String(data.error),
         ]);
       }
@@ -227,15 +226,24 @@ function App() {
             <h2 className="mb-3 text-cyan-400 font-mono">Commands</h2>
 
             <div className="flex flex-col gap-2">
-              <button className="rounded bg-slate-800 p-2 hover:bg-blue-600">
+              <button
+                onClick={() => runCommand("vars")}
+                className="rounded bg-slate-800 p-2 hover:bg-blue-600"
+              >
                 Variables
               </button>
 
-              <button className="rounded bg-slate-800 p-2 hover:bg-blue-600">
+              <button
+                onClick={() => runCommand("history")}
+                className="rounded bg-slate-800 p-2 hover:bg-blue-600"
+              >
                 History
               </button>
 
-              <button className="rounded bg-slate-800 p-2 hover:bg-blue-600">
+              <button
+                onClick={() => runCommand("clear")}
+                className="rounded bg-slate-800 p-2 hover:bg-blue-600"
+              >
                 Clear
               </button>
             </div>
