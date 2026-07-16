@@ -5,6 +5,10 @@ function App() {
   const [result, setResult] = useState("");
   const [commandInput, setCommandInput] = useState("");
   const [showCommands, setShowCommands] = useState(false);
+  const [terminalOutput, setTerminalOutput] = useState<string[]>([
+    "Welcome to C++Calc!",
+    "Type 'help' for commands.",
+  ]);
 
   const buttons = [
     "7",
@@ -68,13 +72,32 @@ function App() {
 
       if (data.result !== undefined) {
         setResult(data.result);
+
+        setTerminalOutput((prev) => [
+          ...prev,
+          `> ${commandInput}`,
+          String(data.result),
+        ]);
       } else {
         setResult(data.error);
+
+        setTerminalOutput((prev) => [
+          ...prev,
+          `> ${commandInput}`,
+          String(data.error),
+        ]);
       }
 
       setCommandInput("");
     } catch {
+      setCommandInput("");
       setResult("Server connection failed");
+
+      setTerminalOutput((prev) => [
+        ...prev,
+        `> ${commandInput}`,
+        "Server connection failed",
+      ]);
     }
   }
 
@@ -84,14 +107,6 @@ function App() {
 
       if ("0123456789+-*/.".includes(key)) {
         setExpression((prev) => prev + key);
-      }
-
-      if (key === "Enter") {
-        if (commandInput) {
-          runCommand();
-        } else {
-          calculate();
-        }
       }
 
       if (key === "Backspace") {
@@ -141,7 +156,7 @@ function App() {
       >
         {/* Terminal header */}
         <div className="mb-4 text-sm text-cyan-400 font-mono">
-          cppcalc@localhost:~
+          c++calc@localhost:~
         </div>
 
         {/* Calculator display */}
@@ -213,6 +228,27 @@ function App() {
             </div>
           </div>
         )}
+
+        {/* Terminal output */}
+        <div
+          className="
+    mt-4
+    h-48
+    overflow-y-auto
+    rounded-lg
+    border
+    border-cyan-400
+    bg-slate-950
+    p-3
+    font-mono
+    text-cyan-400
+    whitespace-pre-wrap
+  "
+        >
+          {terminalOutput.map((line, index) => (
+            <div key={index}>{line}</div>
+          ))}
+        </div>
 
         {/* Command input */}
         <div
