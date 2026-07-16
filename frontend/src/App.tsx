@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function App() {
   const [expression, setExpression] = useState("");
@@ -11,6 +11,14 @@ function App() {
     "Welcome to C++Calc!",
     "Type 'help' for commands.",
   ]);
+
+  const terminalEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    terminalEndRef.current?.scrollIntoView({
+      behavior: "smooth",
+    });
+  }, [terminalOutput]);
 
   const buttons = [
     "7",
@@ -253,20 +261,22 @@ function App() {
           {terminalOutput.map((line, index) => (
             <div key={index}>{line}</div>
           ))}
+
+          <div ref={terminalEndRef} />
         </div>
 
         {/* Command input */}
         <div
           className="
-            mt-4
-            flex
-            items-center
-            rounded-lg
-            border
-            border-cyan-400
-            bg-slate-950
-            p-3
-          "
+    mt-4
+    flex
+    items-center
+    rounded-lg
+    border
+    border-cyan-400
+    bg-slate-950
+    p-3
+  "
         >
           <span className="text-cyan-400 font-mono">&gt;</span>
 
