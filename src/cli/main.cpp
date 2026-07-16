@@ -36,14 +36,6 @@ int main() {
       continue;
     }
 
-    if (input == "clear") {
-
-      calculator.clear();
-
-      std::cout << "Variables cleared\n";
-      continue;
-    }
-
     if (input == "reset") {
 
       calculator.reset();
@@ -57,7 +49,6 @@ int main() {
       std::cout << "  help      Show this message\n";
       std::cout << "  vars      Show variables\n";
       std::cout << "  history   Show calculations\n";
-      std::cout << "  clear     Clear variables\n";
       std::cout << "  reset     Factory reset calculator\n";
       std::cout << "  exit      Quit calculator\n";
       continue;

@@ -61,7 +61,7 @@ int main() {
 
               if (expression == "help" || expression == "vars" ||
                   expression == "history" || expression == "clear" ||
-                  expression == "reset") {
+                  expression == "cls" || expression == "reset") {
 
                 responseJson["result"] = commands.handleCommand(expression);
 

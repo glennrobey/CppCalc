@@ -5,8 +5,10 @@ function App() {
   const [result, setResult] = useState("");
   const [commandInput, setCommandInput] = useState("");
   const [showCommands, setShowCommands] = useState(false);
+
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
+
   const [terminalOutput, setTerminalOutput] = useState<string[]>([
     "Welcome to C++Calc!",
     "Type 'help' for commands.",
@@ -19,6 +21,7 @@ function App() {
       behavior: "smooth",
     });
   }, [terminalOutput]);
+
   const buttons = [
     "7",
     "8",
@@ -53,8 +56,23 @@ function App() {
 
       const data = await response.json();
 
+      if (data.result === "CLEAR_TERMINAL") {
+        setTerminalOutput(["Welcome to C++Calc!", "Type 'help' for commands."]);
+
+        setResult("");
+        setExpression("");
+
+        return;
+      }
+
       if (data.result !== undefined) {
         setResult(data.result);
+
+        setTerminalOutput((prev) => [
+          ...prev,
+          `> ${expression}`,
+          String(data.result),
+        ]);
       } else {
         setResult(data.error);
       }
@@ -67,6 +85,7 @@ function App() {
     if (!command.trim()) return;
 
     setCommandHistory((prev) => [...prev, command]);
+
     setHistoryIndex(-1);
 
     try {
@@ -81,6 +100,14 @@ function App() {
       });
 
       const data = await response.json();
+
+      if (data.result === "CLEAR_TERMINAL") {
+        setTerminalOutput(["Welcome to C++Calc!", "Type 'help' for commands."]);
+
+        setCommandInput("");
+
+        return;
+      }
 
       setTerminalOutput((prev) => [
         ...prev,
@@ -97,6 +124,7 @@ function App() {
       ]);
     }
   }
+
   useEffect(() => {
     function handleKeyboard(event: KeyboardEvent) {
       const key = event.key;
@@ -121,16 +149,18 @@ function App() {
     return () => {
       window.removeEventListener("keydown", handleKeyboard);
     };
-  }, [commandInput]);
+  }, []);
 
   function handleButtonClick(button: string) {
     if (button === "CMD") {
       setShowCommands(!showCommands);
+
       return;
     }
 
     if (button === "ENTER") {
       calculate();
+
       return;
     }
 
@@ -141,31 +171,29 @@ function App() {
     <div className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center">
       <div
         className="
-          w-96
-          rounded-xl
-          border
-          border-cyan-400
-          bg-slate-900
-          p-6
-          shadow-lg
-        "
+                w-96
+                rounded-xl
+                border
+                border-cyan-400
+                bg-slate-900
+                p-6
+                shadow-lg
+                "
       >
-        {/* Terminal header */}
         <div className="mb-4 text-sm text-cyan-400 font-mono">
           c++calc@localhost:~
         </div>
 
-        {/* Calculator display */}
         <div
           className="
-            mb-4
-            rounded-lg
-            border
-            border-cyan-400
-            bg-slate-950
-            p-4
-            font-mono
-          "
+                    mb-4
+                    rounded-lg
+                    border
+                    border-cyan-400
+                    bg-slate-950
+                    p-4
+                    font-mono
+                    "
         >
           <div className="text-right text-cyan-400 text-xl">
             {expression || "0"}
@@ -174,38 +202,36 @@ function App() {
           <div className="text-right text-slate-100 text-3xl">{result}</div>
         </div>
 
-        {/* Keypad */}
         <div className="grid grid-cols-4 gap-3">
           {buttons.map((button) => (
             <button
               key={button}
               onClick={() => handleButtonClick(button)}
               className="
-                rounded-lg
-                bg-slate-800
-                p-4
-                text-xl
-                font-mono
-                hover:bg-blue-600
-                transition
-              "
+                            rounded-lg
+                            bg-slate-800
+                            p-4
+                            text-xl
+                            font-mono
+                            hover:bg-blue-600
+                            transition
+                            "
             >
               {button}
             </button>
           ))}
         </div>
 
-        {/* Command menu */}
         {showCommands && (
           <div
             className="
-              mt-4
-              rounded-lg
-              border
-              border-cyan-400
-              p-4
-              bg-slate-950
-            "
+                        mt-4
+                        rounded-lg
+                        border
+                        border-cyan-400
+                        p-4
+                        bg-slate-950
+                        "
           >
             <h2 className="mb-3 text-cyan-400 font-mono">Commands</h2>
 
@@ -228,27 +254,33 @@ function App() {
                 onClick={() => runCommand("clear")}
                 className="rounded bg-slate-800 p-2 hover:bg-blue-600"
               >
-                Clear
+                Clear Variables
+              </button>
+
+              <button
+                onClick={() => runCommand("cls")}
+                className="rounded bg-slate-800 p-2 hover:bg-blue-600"
+              >
+                Clear Terminal
               </button>
             </div>
           </div>
         )}
 
-        {/* Terminal output */}
         <div
           className="
-    mt-4
-    h-48
-    overflow-y-auto
-    rounded-lg
-    border
-    border-cyan-400
-    bg-slate-950
-    p-3
-    font-mono
-    text-cyan-400
-    whitespace-pre-wrap
-  "
+                    mt-4
+                    h-48
+                    overflow-y-auto
+                    rounded-lg
+                    border
+                    border-cyan-400
+                    bg-slate-950
+                    p-3
+                    font-mono
+                    text-cyan-400
+                    whitespace-pre-wrap
+                    "
         >
           {terminalOutput.map((line, index) => (
             <div key={index}>{line}</div>
@@ -257,33 +289,33 @@ function App() {
           <div ref={terminalEndRef} />
         </div>
 
-        {/* Command input */}
         <div
           className="
-    mt-4
-    flex
-    items-center
-    rounded-lg
-    border
-    border-cyan-400
-    bg-slate-950
-    p-3
-  "
+                    mt-4
+                    flex
+                    items-center
+                    rounded-lg
+                    border
+                    border-cyan-400
+                    bg-slate-950
+                    p-3
+                    "
         >
           <span className="text-cyan-400 font-mono">&gt;</span>
 
           <input
             className="
-              ml-2
-              flex-1
-              bg-transparent
-              font-mono
-              text-cyan-400
-              outline-none
-            "
+                        ml-2
+                        flex-1
+                        bg-transparent
+                        font-mono
+                        text-cyan-400
+                        outline-none
+                        "
             placeholder="type help for commands"
             value={commandInput}
             onChange={(e) => setCommandInput(e.target.value)}
+
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 runCommand();
@@ -300,6 +332,7 @@ function App() {
                     : Math.max(historyIndex - 1, 0);
 
                 setHistoryIndex(newIndex);
+
                 setCommandInput(commandHistory[newIndex]);
               }
 
@@ -312,12 +345,15 @@ function App() {
 
                 if (newIndex >= commandHistory.length) {
                   setHistoryIndex(-1);
+
                   setCommandInput("");
+
                   return;
                 }
 
                 setHistoryIndex(newIndex);
-                setCommandInput(commmandHistory[newIndex]);
+
+                setCommandInput(commandHistory[newIndex]);
               }
             }}
           />

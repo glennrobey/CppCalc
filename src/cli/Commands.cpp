@@ -34,6 +34,11 @@ std::string Commands::handleCommand(const std::string &input) {
     return printHelp();
   }
 
+  if (input == "cls") {
+
+    return "CLEAR_TERMINAL";
+  }
+
   if (input == "vars") {
 
     std::string output;
@@ -94,6 +99,7 @@ std::string Commands::printHelp() {
          "  vars      Show variables\n"
          "  history   Show calculations\n"
          "  clear     Clear variables\n"
+         "  cls       Clear terminal screen\n"
          "  reset     Factory reset calculator\n"
          "  exit      Quit calculator";
 }
