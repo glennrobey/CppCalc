@@ -82,37 +82,21 @@ function App() {
 
       const data = await response.json();
 
-      if (data.result !== undefined) {
-        setResult(data.result);
-
-        setTerminalOutput((prev) => [
-          ...prev,
-          `> ${command}`,
-          String(data.result),
-        ]);
-      } else {
-        setResult(data.error);
-
-        setTerminalOutput((prev) => [
-          ...prev,
-          `> ${command}`,
-          String(data.error),
-        ]);
-      }
+      setTerminalOutput((prev) => [
+        ...prev,
+        `> ${command}`,
+        String(data.result ?? data.error),
+      ]);
 
       setCommandInput("");
     } catch {
-      setCommandInput("");
-      setResult("Server connection failed");
-
       setTerminalOutput((prev) => [
         ...prev,
-        `> ${commandInput}`,
+        `> ${command}`,
         "Server connection failed",
       ]);
     }
   }
-
   useEffect(() => {
     function handleKeyboard(event: KeyboardEvent) {
       const key = event.key;
