@@ -45,7 +45,7 @@ target_link_libraries(
 add_executable(
     CalculatorTests
 
-    tests/CalculatorTests.cpp
+    ../tests/CalculatorTests.cpp
 )
 
 target_link_libraries(
