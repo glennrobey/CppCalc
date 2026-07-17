@@ -57,7 +57,7 @@ int main() {
 
             try {
               auto expression = (*json)["expression"].asString();
-              std::cout << "Received: [" << expression << "]\n";
+              // std::cout << "Received: [" << expression << "]\n";
 
               if (expression == "help" || expression == "vars" ||
                   expression == "history" || expression == "clear" ||

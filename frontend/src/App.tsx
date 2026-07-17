@@ -5,6 +5,7 @@ function App() {
   const [result, setResult] = useState("");
   const [commandInput, setCommandInput] = useState("");
   const [showCommands, setShowCommands] = useState(false);
+  const [justCalculated, setJustCalculated] = useState(false);
 
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
@@ -72,6 +73,8 @@ function App() {
       if (data.result !== undefined) {
         setResult(data.result);
 
+        setJustCalculated(true);
+
         setTerminalOutput((prev) => [
           ...prev,
           `> ${expression}`,
@@ -133,13 +136,13 @@ function App() {
     function handleKeyboard(event: KeyboardEvent) {
       const key = event.key;
 
-      if ("0123456789+-*/.".includes(key)) {
-        setExpression((prev) => prev + key);
-      }
-
-      if (key === "Enter") {
-        event.preventDefault();
-        calculate();
+      if (/^[a-zA-Z0-9+\-*/().=]$/.test(key)) {
+        if (justCalculated) {
+          setExpression(key);
+          setJustCalculated(false);
+        } else {
+          setExpression((prev) => prev + key);
+        }
       }
 
       if (key === "Backspace") {
@@ -150,6 +153,10 @@ function App() {
         setExpression("");
         setResult("");
         setCommandInput("");
+      }
+
+      if (key === "Enter") {
+        calculate();
       }
     }
 
@@ -171,8 +178,12 @@ function App() {
 
       return;
     }
-
-    setExpression((prev) => prev + button);
+    if (justCalculated) {
+      setExpression(button);
+      setJustCalculated(false);
+    } else {
+      setExpression((prev) => prev + button);
+    }
   }
 
   return (
