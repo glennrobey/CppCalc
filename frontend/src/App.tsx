@@ -398,6 +398,9 @@ active:shadow-inner
           <input
             type="text"
             inputMode="text"
+            autoCapitalize="none"
+            autoCorrect="off"
+            spellCheck={false}
             className="
                         ml-2
                         flex-1
