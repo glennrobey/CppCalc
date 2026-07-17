@@ -43,6 +43,10 @@ function App() {
   ];
 
   async function calculate() {
+    if (!expression.trim()) {
+      setResult("");
+      return;
+    }
     try {
       const response = await fetch("http://localhost:8080/calculate", {
         method: "POST",
@@ -172,7 +176,7 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center">
+    <div className="min-h-screen bg-[radial-gradient(circle_at_center,_#164e63_0%,_#020617_45%)]  text-slate-100 flex items-center justify-center">
       <div
         className="
                 w-96
