@@ -49,15 +49,18 @@ function App() {
       return;
     }
     try {
-      const response = await fetch("http://localhost:8080/calculate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/calculate`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            expression,
+          }),
         },
-        body: JSON.stringify({
-          expression,
-        }),
-      });
+      );
 
       const data = await response.json();
 
@@ -96,15 +99,18 @@ function App() {
     setHistoryIndex(-1);
 
     try {
-      const response = await fetch("http://localhost:8080/calculate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/calculate`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            expression: command,
+          }),
         },
-        body: JSON.stringify({
-          expression: command,
-        }),
-      });
+      );
 
       const data = await response.json();
 
