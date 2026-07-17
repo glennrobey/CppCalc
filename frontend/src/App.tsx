@@ -41,6 +41,7 @@ function App() {
     "0",
     ".",
     "+",
+    "DEL",
     "ENTER",
   ];
 
@@ -169,6 +170,13 @@ function App() {
     };
   }, [expression]);
   function handleButtonClick(button: string) {
+    if (button === "DEL") {
+      setExpression("");
+      setResult("");
+      setJustCalculated(false);
+      return;
+    }
+
     if (button === "CMD") {
       setShowCommands(!showCommands);
 
