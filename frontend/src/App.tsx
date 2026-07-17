@@ -133,6 +133,11 @@ function App() {
         setExpression((prev) => prev + key);
       }
 
+      if (key === "Enter") {
+        event.preventDefault();
+        calculate();
+      }
+
       if (key === "Backspace") {
         setExpression((prev) => prev.slice(0, -1));
       }
@@ -149,8 +154,7 @@ function App() {
     return () => {
       window.removeEventListener("keydown", handleKeyboard);
     };
-  }, []);
-
+  }, [expression]);
   function handleButtonClick(button: string) {
     if (button === "CMD") {
       setShowCommands(!showCommands);
@@ -208,14 +212,20 @@ function App() {
               key={button}
               onClick={() => handleButtonClick(button)}
               className="
-                            rounded-lg
-                            bg-slate-800
-                            p-4
-                            text-xl
-                            font-mono
-                            hover:bg-blue-600
-                            transition
-                            "
+px-4 py-2
+border border-cyan-400
+bg-transparent
+text-cyan-400
+rounded-md
+transition-all duration-100
+hover:bg-cyan-400
+hover:text-slate-950
+hover:shadow-lg
+hover:shadow-cyan-400/40
+hover:-translate-y-1
+active:translate-y-0
+active:shadow-inner
+"
             >
               {button}
             </button>
@@ -238,28 +248,85 @@ function App() {
             <div className="flex flex-col gap-2">
               <button
                 onClick={() => runCommand("vars")}
-                className="rounded bg-slate-800 p-2 hover:bg-blue-600"
+                className="
+rounded
+border border-cyan-700
+bg-transparent
+p-2
+text-cyan-400
+transition-all duration-100
+hover:bg-cyan-400
+hover:text-slate-950
+hover:border-cyan-300
+hover:shadow-lg
+hover:shadow-cyan-400/40
+hover:-translate-y-1
+active:translate-y-0
+active:shadow-intter"
               >
                 Variables
               </button>
 
               <button
                 onClick={() => runCommand("history")}
-                className="rounded bg-slate-800 p-2 hover:bg-blue-600"
+                className="
+rounded
+border border-cyan-700
+bg-transparent
+p-2
+text-cyan-400
+transition-all duration-100
+hover:bg-cyan-400
+hover:text-slate-950
+hover:border-cyan-300
+hover:shadow-lg
+hover:shadow-cyan-400/40
+hover:-translate-y-1
+active:translate-y-0
+active:shadow-intter"
               >
                 History
               </button>
 
               <button
                 onClick={() => runCommand("clear")}
-                className="rounded bg-slate-800 p-2 hover:bg-blue-600"
+                className="
+rounded
+border border-cyan-700
+bg-transparent
+p-2
+text-cyan-400
+transition-all duration-100
+hover:bg-cyan-400
+hover:text-slate-950
+hover:border-cyan-300
+hover:shadow-lg
+hover:shadow-cyan-400/40
+hover:-translate-y-1
+active:translate-y-0
+active:shadow-inner"
               >
                 Clear Variables
               </button>
 
               <button
                 onClick={() => runCommand("cls")}
-                className="rounded bg-slate-800 p-2 hover:bg-blue-600"
+                className="
+rounded
+border border-cyan-700
+bg-transparent
+p-2
+text-cyan-400
+transition-all duration-100
+hover:bg-cyan-400
+hover:text-slate-950
+hover:border-cyan-300
+hover:shadow-lg
+hover:shadow-cyan-400/40
+hover:-translate-y-1
+active:translate-y-0
+active:shadow-inner
+"
               >
                 Clear Terminal
               </button>
