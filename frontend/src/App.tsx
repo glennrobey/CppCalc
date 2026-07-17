@@ -242,14 +242,24 @@ border border-cyan-400
 bg-transparent
 text-cyan-400
 rounded-md
-transition-all duration-100
+
+transition-all
+duration-100
+ease-in-out
+
 hover:bg-cyan-400
 hover:text-slate-950
 hover:shadow-lg
 hover:shadow-cyan-400/40
 hover:-translate-y-1
-active:translate-y-0
+
+active:scale-95
+active:bg-cyan-500
+active:text-slate-950
 active:shadow-inner
+
+touch-manipulation
+select-none
 "
             >
               {button}
@@ -274,41 +284,53 @@ active:shadow-inner
               <button
                 onClick={() => runCommand("vars")}
                 className="
-rounded
-border border-cyan-700
+px-4 py-2
+border border-cyan-400
 bg-transparent
-p-2
 text-cyan-400
-transition-all duration-100
+rounded-md
+
+transition-all
+duration-100
+
 hover:bg-cyan-400
 hover:text-slate-950
-hover:border-cyan-300
 hover:shadow-lg
 hover:shadow-cyan-400/40
 hover:-translate-y-1
-active:translate-y-0
-active:shadow-intter"
+
+active:scale-95
+active:bg-cyan-500
+active:text-slate-950
+active:shadow-inner
+"
               >
-                Variables
+                " Variables
               </button>
 
               <button
                 onClick={() => runCommand("history")}
                 className="
-rounded
-border border-cyan-700
+px-4 py-2
+border border-cyan-400
 bg-transparent
-p-2
 text-cyan-400
-transition-all duration-100
+rounded-md
+
+transition-all
+duration-100
+
 hover:bg-cyan-400
 hover:text-slate-950
-hover:border-cyan-300
 hover:shadow-lg
 hover:shadow-cyan-400/40
 hover:-translate-y-1
-active:translate-y-0
-active:shadow-intter"
+
+active:scale-95
+active:bg-cyan-500
+active:text-slate-950
+active:shadow-inner
+"
               >
                 History
               </button>
@@ -316,20 +338,26 @@ active:shadow-intter"
               <button
                 onClick={() => runCommand("clear")}
                 className="
-rounded
-border border-cyan-700
+px-4 py-2
+border border-cyan-400
 bg-transparent
-p-2
 text-cyan-400
-transition-all duration-100
+rounded-md
+
+transition-all
+duration-100
+
 hover:bg-cyan-400
 hover:text-slate-950
-hover:border-cyan-300
 hover:shadow-lg
 hover:shadow-cyan-400/40
 hover:-translate-y-1
-active:translate-y-0
-active:shadow-inner"
+
+active:scale-95
+active:bg-cyan-500
+active:text-slate-950
+active:shadow-inner
+"
               >
                 Clear Variables
               </button>
@@ -337,19 +365,24 @@ active:shadow-inner"
               <button
                 onClick={() => runCommand("cls")}
                 className="
-rounded
-border border-cyan-700
+px-4 py-2
+border border-cyan-400
 bg-transparent
-p-2
 text-cyan-400
-transition-all duration-100
+rounded-md
+
+transition-all
+duration-100
+
 hover:bg-cyan-400
 hover:text-slate-950
-hover:border-cyan-300
 hover:shadow-lg
 hover:shadow-cyan-400/40
 hover:-translate-y-1
-active:translate-y-0
+
+active:scale-95
+active:bg-cyan-500
+active:text-slate-950
 active:shadow-inner
 "
               >
