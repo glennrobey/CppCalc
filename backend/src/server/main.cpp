@@ -1,12 +1,21 @@
 #include "cli/Commands.hpp"
 #include "core/Calculator.hpp"
+#include <cstdlib>
 #include <drogon/drogon.h>
 #include <iostream>
+#include <string>
 
 int main() {
   Calculator calc;
   Commands commands(calc);
-  std::cout << "C++Calc server running on port 8080\n";
+
+  int port = 8080;
+
+  if (const char *envPort = std::getenv("PORT")) {
+    port = std::stoi(envPort);
+  }
+
+  std::cout << "C++Calc server running on port " << port << "\n";
 
   auto addCorsHeaders = [](const drogon::HttpResponsePtr &response) {
     response->addHeader("Access-Control-Allow-Origin", "*");
@@ -108,7 +117,7 @@ int main() {
             callback(response);
           })
 
-      .addListener("127.0.0.1", 8080)
+      .addListener("0.0.0.0", port)
       .run();
 
   return 0;
