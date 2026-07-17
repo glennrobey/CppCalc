@@ -6,6 +6,7 @@ function App() {
   const [commandInput, setCommandInput] = useState("");
   const [showCommands, setShowCommands] = useState(false);
   const [justCalculated, setJustCalculated] = useState(false);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
@@ -48,19 +49,17 @@ function App() {
       setResult("");
       return;
     }
+
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/calculate`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            expression,
-          }),
+      const response = await fetch(`${API_URL}/calculate`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify({
+          expression: expression,
+        }),
+      });
 
       const data = await response.json();
 
@@ -99,18 +98,15 @@ function App() {
     setHistoryIndex(-1);
 
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/calculate`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            expression: command,
-          }),
+      const response = await fetch(`${API_URL}/calculate`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify({
+          expression: command,
+        }),
+      });
 
       const data = await response.json();
 
