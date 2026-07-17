@@ -386,6 +386,8 @@ active:shadow-inner
           <span className="text-cyan-400 font-mono">&gt;</span>
 
           <input
+            type="text"
+            inputMode="text"
             className="
                         ml-2
                         flex-1
