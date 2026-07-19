@@ -305,7 +305,7 @@ active:text-slate-950
 active:shadow-inner
 "
               >
-                " Variables
+                Variables
               </button>
 
               <button
