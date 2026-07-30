@@ -1,4 +1,4 @@
-# C++ Scientific Calculator
+# C++Calc
 
 Calculator application implementing common arithmetic and scientific operations with a modular C++ backend.
 
